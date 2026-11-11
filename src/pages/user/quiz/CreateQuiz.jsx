@@ -6,7 +6,7 @@ function CreateQuiz() {
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState("");
   const [questionCount, setQuestionCount]= useState(10);
-  const [difficulty, setDifficulty]= useState("medium")
+  const [difficulty, setDifficulty]= useState("medium");
 
   function handleFileChange(event) {
     const selectedFiles = Array.from(event.target.files);
@@ -61,15 +61,16 @@ function CreateQuiz() {
   }
 
   return (
-    <main>
+    <main className="container py-5">
       <h1>Create Quiz with AI</h1>
       <p>Upload your course materials to generate MCQ questions.</p>
 
-      <form onSubmit={handleSubmit}>
-        <div>
+      <form onSubmit={handleSubmit} className="bg-white border rounded-4 p-4 mx-auto quiz-form">
+        <div className="mb-3">
           <label htmlFor="quiz-title">Quiz title</label>
 
           <input
+            className="form-control"
             id="quiz-title"
             type="text"
             value={quizTitle}
@@ -77,15 +78,16 @@ function CreateQuiz() {
             placeholder="Example: Chapter 3 Practice Quiz"
           />
 
-          {errors.title && <p role="alert">{errors.title}</p>}
+          {errors.title && <p role="alert" className="text-danger mt-1">{errors.title}</p>}
         </div>
 
-        <div>
-          <label htmlFor="material-files">
+        <div className="mb-3">
+          <label className="form-label" htmlFor="material-files">
             Course materials — PDF or DOCX
           </label>
 
           <input
+            className="form-control"
             id="material-files"
             type="file"
             accept=".pdf,.docx"
@@ -93,27 +95,28 @@ function CreateQuiz() {
             onChange={handleFileChange}
           />
 
-          {errors.files && <p role="alert">{errors.files}</p>}
+          {errors.files && <p role="alert" className="text-danger mt-1">{errors.files}</p>}
         </div>
-        <div>
-            <label  htmlFor="quiz-count"> Number of questions</label>
-            <select id= "quiz-count" value={questionCount} onChange={(event) => setQuestionCount(Number(event.target.value))}>
+        <div className="mb-3">
+            <label  className="form-label" htmlFor="quiz-count"> Number of questions</label>
+            <select className="form-select" id= "quiz-count" value={questionCount} onChange={(event) => setQuestionCount(Number(event.target.value))}>
                 <option value="5"> 5 questions</option>
                 <option value="10"> 10 questions</option>
                 <option value="15"> 15 questions</option>
                 <option value="20"> 20 questions</option>
                 </select>
             </div>
-            <div>
-                <label  htmlFor="quiz-difficulty">questions level of difficulty</label>
-                <select id= "quiz-difficulty" value={difficulty} onChange={(event) => setDifficulty(event.target.value)}>
+            <div className="mb-3">
+                <label className="form-label" htmlFor="quiz-difficulty">Difficulty levels: </label>
+                <select className="form-select" id= "quiz-difficulty" value={difficulty} onChange={(event) => setDifficulty(event.target.value)}>
                     <option value="hard"> Hard</option>
                     <option value="medium">Medium</option>
                     <option value="easy"> Easy</option>
                 </select>
+            <p> Question type: Multiple Choice </p>
             </div>
         {materialFiles.length > 0 && (
-          <div>
+          <div className="mb-3">
             <h2>Selected files</h2>
 
             <ul>
@@ -126,9 +129,11 @@ function CreateQuiz() {
           </div>
         )}
 
-        <button type="submit">Continue</button>
+        <button type="submit" className="btn btn-primary">
+          Generate Quiz
+        </button>
 
-        {message && <p>{message}</p>}
+        {message && <p className="text-success mt-3" >{message}</p>}
       </form>
     </main>
   );

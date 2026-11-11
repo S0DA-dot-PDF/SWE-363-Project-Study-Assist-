@@ -15,3 +15,17 @@ select,
 textarea {
   font: inherit;
 }
+
+.quiz-form {
+  max-width: 720px;
+}
+
+.btn-primary {
+  background-color: #2c5e65;
+  border-color: #2c5e65;
+}
+
+.btn-primary:hover {
+  background-color: #234c52;
+  border-color: #234c52;
+}
