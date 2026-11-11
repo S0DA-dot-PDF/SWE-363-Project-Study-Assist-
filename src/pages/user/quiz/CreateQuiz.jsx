@@ -1,12 +1,14 @@
 import { useState } from "react";
-
+import {useNavigate} from "react-router-dom";
 function CreateQuiz() {
+  const navigate = useNavigate();
   const [quizTitle, setQuizTitle] = useState("");
   const [materialFiles, setMaterialFiles] = useState([]);
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState("");
   const [questionCount, setQuestionCount]= useState(10);
   const [difficulty, setDifficulty]= useState("medium");
+  const [isGenerating, setIsGenerating] = useState(false);
 
   function handleFileChange(event) {
     const selectedFiles = Array.from(event.target.files);
@@ -56,8 +58,11 @@ function CreateQuiz() {
     if (!validateForm()) {
       return;
     }
-
-    setMessage(`Ready to generate ${questionCount} ${difficulty} MCQ questions.`);
+setIsGenerating(true);
+setMessage("AI is generating your quiz wait please.....");
+setTimeout(() => {
+    navigate("/quizzes/generated");
+    }, 2000);
   }
 
   return (
@@ -129,8 +134,8 @@ function CreateQuiz() {
           </div>
         )}
 
-        <button type="submit" className="btn btn-primary">
-          Generate Quiz
+        <button type="submit" className="btn btn-primary" disabled = {isGenerating}>
+          { isGenerating ? "building your quiz..." : "Generate quiz"}
         </button>
 
         {message && <p className="text-success mt-3" >{message}</p>}
