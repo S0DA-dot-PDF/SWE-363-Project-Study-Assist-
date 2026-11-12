@@ -22,6 +22,38 @@ const unansweredCount = answers.filter(
 
 const incorrectCount =
   questions.length - correctCount - unansweredCount;
+
+  function getOptionClass(question, questionIndex, optionIndex) {
+    const selectedAnswer = answers[questionIndex];
+
+    if (optionIndex === question.correctAnswer) {
+      return "review-option correct-option";
+    }
+
+    if (optionIndex === selectedAnswer) {
+      return "review-option wrong-option";
+    }
+
+    return "review-option";
+  }
+
+function getCardClass(question, questionIndex) {
+  const selectedAnswer = answers[questionIndex];
+
+  if (
+    selectedAnswer === null ||
+    selectedAnswer === undefined
+  ) {
+    return "review-card unanswered-card";
+  }
+
+  if (selectedAnswer === question.correctAnswer) {
+    return "review-card correct-card";
+  }
+
+  return "review-card incorrect-card";
+}
+
   return (
     <main className="container py-5">
       <div className="bg-white border rounded-4 p-4 mx-auto quiz-form">
@@ -42,6 +74,41 @@ const incorrectCount =
             Unanswered: {unansweredCount}
           </span>
         </div>
+        <h2 className="h4">Answer Review</h2>
+
+        {
+         questions.map((question, index) =>
+         <div key={question.id} className={getCardClass(question, index)}>
+           <h3 className="review-card-title">
+             Question {index + 1}
+           </h3>
+
+           <p>{question.question}</p>
+           <div className="review-options">
+             {question.options.map((option, optionIndex) => (
+               <div key={optionIndex}className={getOptionClass(question, index, optionIndex)}>
+                 <strong>
+                   {["A", "B", "C", "D"][optionIndex]}.
+                 </strong>
+
+                 <span>{option}</span>
+                 {optionIndex === question.correctAnswer && (
+                   <strong className="correct-answer-label">
+                     Correct Answer
+                   </strong>
+                 )}
+               </div>
+             ))}
+           </div>
+
+
+         </div>
+         )}
+
+
+
+
+
         <div className="d-flex gap-2 flex-wrap">
           <button
             type="button"

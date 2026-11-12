@@ -42,27 +42,25 @@ function App() {
         <Route
           path="/quizzes/create"
           element={
-            <ProtectedRoute>
+
               <CreateQuiz />
-            </ProtectedRoute>
+
           }
         />
 
         <Route
           path="/quizzes/generated"
           element={
-            <ProtectedRoute>
+
               <GeneratedQuiz />
-            </ProtectedRoute>
+
           }
         />
 
         <Route
           path="/quizzes/results"
           element={
-            <ProtectedRoute>
               <QuizResults />
-            </ProtectedRoute>
           }
         />
         <Route path="*" element={<NotFound />} />

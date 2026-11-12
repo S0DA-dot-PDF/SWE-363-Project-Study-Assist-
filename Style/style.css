@@ -654,3 +654,62 @@ body {
 .report-problem-button:hover {
   background-color: #eff6ff;
 }
+
+.review-card {
+  margin-bottom: 16px;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.review-card-title {
+  margin: 0 0 12px;
+  font-size: 20px;
+}
+
+.review-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.review-option {
+  display: flex;
+  gap: 10px;
+  padding: 12px 14px;
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+}
+
+.correct-option {
+  background-color: #dcfce7;
+  border-color: #16a34a;
+}
+
+.wrong-option {
+  background-color: #fee2e2;
+  border-color: #dc2626;
+}
+
+.correct-answer-label {
+  margin-left: auto;
+  color: #15803d;
+}
+
+.correct-card {
+  background-color: #f0fdf4;
+  border-color: #16a34a;
+}
+
+.incorrect-card {
+  background-color: #fef2f2;
+  border-color: #dc2626;
+}
+
+.unanswered-card {
+  background-color: #f3f4f6;
+  border-color: #9ca3af;
+}
