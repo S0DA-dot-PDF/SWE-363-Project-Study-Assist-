@@ -334,3 +334,108 @@ body {
   color: #2563eb;
   text-decoration: none;
 }
+
+.reset-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  background-color: #f4f7fb;
+}
+
+.reset-card {
+  width: 100%;
+  max-width: 460px;
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.reset-card h1 {
+  margin-bottom: 12px;
+  color: #1f2937;
+  font-size: 30px;
+}
+
+.reset-card p {
+  margin-bottom: 24px;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.reset-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.reset-card label {
+  margin-top: 10px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.reset-card input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.reset-card input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.reset-card button {
+  margin-top: 18px;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: #2563eb;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.reset-card button:hover {
+  background-color: #1d4ed8;
+}
+
+.reset-card .error-message {
+  margin: 8px 0 0;
+  color: #dc2626;
+  font-size: 14px;
+}
+
+.reset-card .success-message {
+  margin: 8px 0 0;
+  color: #15803d;
+  font-size: 14px;
+}
+
+.reset-card > a {
+  display: inline-block;
+  margin-top: 20px;
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.reset-card > a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 500px) {
+  .reset-card {
+    padding: 28px 22px;
+  }
+
+  .reset-card h1 {
+    font-size: 26px;
+  }
+}
