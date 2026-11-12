@@ -59,7 +59,7 @@ function CreateQuiz() {
       return;
     }
 setIsGenerating(true);
-setMessage("AI is generating your quiz wait please.....");
+setMessage("AI is generating your quiz wait please....");
 setTimeout(() => {
     navigate("/quizzes/generated");
     }, 2000);
