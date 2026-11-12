@@ -7,6 +7,9 @@ import VerifyEmail from "./pages/public/VerifyEmail";
 import ResetPassword from "./pages/public/ResetPassword";
 import NotFound from "./pages/public/NotFound";
 import Dashboard from "./pages/user/shared/Dashboard";
+import CreateQuiz from "./pages/user/quiz/CreateQuiz";
+import GeneratedQuiz from "./pages/user/quiz/GeneratedQuiz";
+import QuizResults from "./pages/user/quiz/QuizResults";
 
 function ProtectedRoute({ children }) {
   const currentUser = localStorage.getItem("currentUser");
@@ -36,7 +39,32 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/quizzes/create"
+          element={
+            <ProtectedRoute>
+              <CreateQuiz />
+            </ProtectedRoute>
+          }
+        />
 
+        <Route
+          path="/quizzes/generated"
+          element={
+            <ProtectedRoute>
+              <GeneratedQuiz />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/quizzes/results"
+          element={
+            <ProtectedRoute>
+              <QuizResults />
+            </ProtectedRoute>
+          }
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
