@@ -63,7 +63,9 @@ function SignUp() {
 
     //Redirect the user to the email verification page after 1.5 seconds
     setTimeout(() => {
-      navigate("/verify-email");
+      navigate("/verify-email", {
+        state: { email: email },
+      });
     }, 1500);
   };
 
