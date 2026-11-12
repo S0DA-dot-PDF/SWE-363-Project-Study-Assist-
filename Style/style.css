@@ -488,3 +488,169 @@ body {
 .not-found-card .primary-button:hover {
   background-color: #1d4ed8;
 }
+
+.dashboard-page {
+  min-height: 100vh;
+  padding: 40px;
+  background-color: #f4f7fb;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.welcome-text {
+  margin: 0;
+  color: #6b7280;
+}
+
+.dashboard-header h1 {
+  margin: 6px 0 0;
+  color: #1f2937;
+}
+
+.profile-link {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.dashboard-shortcuts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.dashboard-card {
+  padding: 24px;
+  background-color: white;
+  border-radius: 12px;
+  color: #1f2937;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.dashboard-card:hover {
+  transform: translateY(-3px);
+}
+
+.dashboard-card h2 {
+  margin-top: 0;
+  color: #2563eb;
+  font-size: 20px;
+}
+
+.dashboard-card p {
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.dashboard-summary {
+  margin-top: 28px;
+  padding: 32px;
+  background-color: white;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.empty-dashboard p {
+  color: #6b7280;
+}
+
+.dashboard-actions {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.student-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.summary-box {
+  padding: 24px;
+  background-color: white;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.summary-box h3 {
+  color: #374151;
+}
+
+.summary-box p {
+  color: #2563eb;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+@media (max-width: 800px) {
+  .dashboard-page {
+    padding: 24px;
+  }
+
+  .dashboard-shortcuts {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .student-summary {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 500px) {
+  .dashboard-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .dashboard-shortcuts {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-actions {
+    flex-direction: column;
+  }
+}
+.dashboard-icon {
+  margin-bottom: 12px;
+  color: #2563eb;
+}
+
+.profile-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.report-problem-container {
+  display: flex;
+  justify-content: flex-end;
+  margin: 18px 0 24px;
+}
+
+.report-problem-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border: 1px solid #2563eb;
+  border-radius: 8px;
+  background-color: transparent;
+  color: #2563eb;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.report-problem-button:hover {
+  background-color: #eff6ff;
+}

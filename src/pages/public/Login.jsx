@@ -57,6 +57,8 @@ function Login() {
     return;
     }
 
+    localStorage.setItem("currentUser", JSON.stringify(user));
+
     if (user.role === "student") {
     navigate("/dashboard");
     } else if (user.role === "educator") {

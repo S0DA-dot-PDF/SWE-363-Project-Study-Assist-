@@ -1,15 +1,18 @@
 export const mockUsers = [
   {
     id: 1,
+    name: "Zaizi",
     email: "student@example.com",
     password: "Password1",
     role: "student",
+    points: 120,
     isVerified: true,
     isApproved: true,
     isSuspended: false,
   },
   {
     id: 2,
+    name: "Hanan Educator",
     email: "educator@example.com",
     password: "Password1",
     role: "educator",
@@ -19,6 +22,7 @@ export const mockUsers = [
   },
   {
     id: 3,
+    name: "Zainab Alzayer",
     email: "admin@example.com",
     password: "Password1",
     role: "admin",
