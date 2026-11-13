@@ -10,6 +10,12 @@ function Profile() {
     localStorage.getItem("currentUser")
   );
 
+  //Select the correct dashboard according to the user's role
+  const dashboardPath =
+    currentUser.role === "admin"
+      ? "/admin-dashboard"
+      : "/dashboard";
+
   //Stores the user's score history (currently empty).
   const results = [];
 
@@ -85,7 +91,7 @@ function Profile() {
         )}
 
         <div className="profile-actions">
-          <Link to="/dashboard" className="secondary-button">
+          <Link to={dashboardPath} className="secondary-button">
             Back to Dashboard
           </Link>
 

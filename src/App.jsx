@@ -13,6 +13,7 @@ import QuizResults from "./pages/user/quiz/QuizResults";
 import Profile from "./pages/user/shared/Profile";
 import Comments from "./pages/user/shared/Comments";
 import ReportProblem from "./pages/user/shared/ReportProblem";
+import AdminDashboard from "./pages/admin/AdminDashboard";
 
 function ProtectedRoute({ children }) {
   const currentUser = localStorage.getItem("currentUser");
@@ -92,6 +93,15 @@ function App() {
         element={
           <ProtectedRoute>
             <ReportProblem />
+          </ProtectedRoute>
+        }
+        />
+
+        <Route
+        path="/admin-dashboard"
+        element={
+          <ProtectedRoute>
+            <AdminDashboard />
           </ProtectedRoute>
         }
         />
