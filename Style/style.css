@@ -713,3 +713,32 @@ body {
   background-color: #f3f4f6;
   border-color: #9ca3af;
 }
+.editor-input {
+  width: 100%;
+  margin-top: 8px;
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.editor-options {
+  margin-top: 16px;
+}
+
+.editor-option-row {
+  display: grid;
+  grid-template-columns: 20px 24px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.editor-option-row .editor-input {
+  width: 100%;
+  min-width: 0;
+}
+
+.editor-option-row input[type="radio"] {
+  margin: 0;
+}

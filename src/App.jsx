@@ -10,12 +10,29 @@ import Dashboard from "./pages/user/shared/Dashboard";
 import CreateQuiz from "./pages/user/quiz/CreateQuiz";
 import GeneratedQuiz from "./pages/user/quiz/GeneratedQuiz";
 import QuizResults from "./pages/user/quiz/QuizResults";
+import QuestionEditor from "./pages/user/quiz/QuestionEditor";
 
 function ProtectedRoute({ children }) {
   const currentUser = localStorage.getItem("currentUser");
 
   if (!currentUser) {
     return <Navigate to="/login" replace />;
+  }
+
+  return children;
+}
+
+function EducatorRoute({ children }) {
+  const storedUser = localStorage.getItem("currentUser");
+
+  if (!storedUser) {
+    return <Navigate to="/login" replace />;
+  }
+
+  const currentUser = JSON.parse(storedUser);
+
+  if (currentUser.role !== "educator") {
+    return <Navigate to="/dashboard" replace />;
   }
 
   return children;
@@ -42,27 +59,39 @@ function App() {
         <Route
           path="/quizzes/create"
           element={
-
+              <ProtectedRoute>
               <CreateQuiz />
-
+              </ProtectedRoute>
           }
         />
 
         <Route
           path="/quizzes/generated"
           element={
-
+              <ProtectedRoute>
               <GeneratedQuiz />
-
+              </ProtectedRoute>
           }
         />
 
         <Route
           path="/quizzes/results"
           element={
+              <ProtectedRoute>
               <QuizResults />
+              </ProtectedRoute>
           }
         />
+
+        <Route
+          path="/quizzes/editor"
+          element={
+              <EducatorRoute>
+                <QuestionEditor />
+              </EducatorRoute>
+          }
+        />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

@@ -17,6 +17,13 @@ const generatedQuestions = [
 const quizDuration = 60;
 function GeneratedQuiz() {
     const navigate = useNavigate();
+    const storedUser = localStorage.getItem("currentUser");
+
+    const currentUser = storedUser
+      ? JSON.parse(storedUser)
+      : null;
+
+    const isEducator = currentUser?.role === "educator";
     const [currentQuestionIndex, setCurrentQuestionIndex]= useState(0);
     const [answers, setAnswers] = useState(Array(generatedQuestions.length).fill(null));
     const [timeRemaining, setTimeRemaining] = useState(quizDuration);
@@ -53,7 +60,26 @@ useEffect(() => {
   return (
     <main className="container py-5">
       <div className="bg-white border rounded-4 p-4 mx-auto quiz-form">
-        <h1>Generated Quiz</h1>
+        <div className="d-flex justify-content-between align-items-center gap-2">
+          <h1>Generated Quiz</h1>
+
+          <button
+            type="button"
+            className="btn btn-outline-primary"
+            disabled={!isEducator}
+            onClick={() => {
+              console.log("Sending questions:", generatedQuestions);
+
+              navigate("/quizzes/editor", {
+                state: {
+                  questions: generatedQuestions,
+                },
+              });
+            }}
+          >
+            Edit Quiz
+          </button>
+        </div>
         <p className="mb-2">
           Time remaining: {timeRemaining} seconds
         </p>
