@@ -654,3 +654,226 @@ body {
 .report-problem-button:hover {
   background-color: #eff6ff;
 }
+
+/* ===== My Libraries (LIB-01) ===== */
+
+.lib-page {
+  min-height: 100vh;
+  padding: 40px;
+  background-color: #f4f7fb;
+}
+
+.lib-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.lib-header h1 {
+  margin: 0;
+  color: #1f2937;
+}
+
+.lib-header-actions {
+  display: flex;
+  gap: 14px;
+}
+
+/* Buttons rendered as <button> (Try again) need the same look as links */
+.lib-page button.primary-button,
+.lib-page button.secondary-button {
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.lib-page button.primary-button {
+  border: none;
+}
+
+/* Filter chips + search */
+.lib-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.lib-filters {
+  display: flex;
+  gap: 8px;
+}
+
+.lib-chip {
+  padding: 9px 18px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background-color: white;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.lib-chip:hover {
+  background-color: #eff6ff;
+}
+
+.lib-chip.is-active {
+  border-color: #2563eb;
+  background-color: #2563eb;
+  color: white;
+}
+
+.lib-search {
+  width: 100%;
+  max-width: 320px;
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.lib-search:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Cards grid */
+.lib-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lib-card {
+  display: block;
+  height: 100%;
+  padding: 24px;
+  background-color: white;
+  border-radius: 12px;
+  color: #1f2937;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.lib-card:hover {
+  transform: translateY(-3px);
+}
+
+.lib-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.lib-course {
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.lib-card-name {
+  margin: 0;
+  color: #2563eb;
+  font-size: 20px;
+  overflow-wrap: anywhere;
+}
+
+/* [mine] / [joined] tags */
+.lib-tag {
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.lib-tag-mine {
+  background-color: #dcfce7;
+  color: #15803d;
+}
+
+.lib-tag-joined {
+  background-color: #eff6ff;
+  color: #2563eb;
+}
+
+/* Loading / error / no results */
+.lib-message {
+  padding: 32px;
+  background-color: white;
+  border-radius: 12px;
+  color: #6b7280;
+  text-align: center;
+}
+
+.lib-message p {
+  margin-top: 0;
+}
+
+/* Empty state (same look as the dashboard's empty box) */
+.lib-empty {
+  padding: 32px;
+  background-color: white;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.lib-empty h2 {
+  margin-top: 0;
+  color: #1f2937;
+}
+
+.lib-empty p {
+  color: #6b7280;
+}
+
+.lib-empty .lib-header-actions {
+  justify-content: center;
+  margin-top: 24px;
+}
+
+@media (max-width: 800px) {
+  .lib-page {
+    padding: 24px;
+  }
+
+  .lib-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .lib-header,
+  .lib-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .lib-header {
+    gap: 16px;
+  }
+
+  .lib-header-actions {
+    flex-direction: column;
+  }
+
+  .lib-header-actions .primary-button,
+  .lib-header-actions .secondary-button {
+    text-align: center;
+  }
+
+  .lib-search {
+    max-width: none;
+  }
+
+  .lib-grid {
+    grid-template-columns: 1fr;
+  }
+}
