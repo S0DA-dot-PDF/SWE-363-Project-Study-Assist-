@@ -877,3 +877,113 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* ===== Join Library (LIB-02) ===== */
+
+.join-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  background-color: #f4f7fb;
+}
+
+.join-card {
+  width: 100%;
+  max-width: 460px;
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.join-card h1 {
+  margin: 0 0 10px;
+  color: #1f2937;
+  font-size: 30px;
+}
+
+.join-card > p {
+  margin-bottom: 24px;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.join-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.join-card label {
+  font-weight: 600;
+  color: #374151;
+}
+
+.join-card input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.join-card input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.join-card input[aria-invalid="true"] {
+  border-color: #dc2626;
+}
+
+.join-card button {
+  margin-top: 10px;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: #2563eb;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.join-card button:hover:not(:disabled) {
+  background-color: #1d4ed8;
+}
+
+.join-card button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.join-card .error-message,
+.join-card .success-message {
+  margin: 4px 0 0;
+  font-size: 14px;
+}
+
+.join-card .join-button {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.join-card > a {
+  display: inline-block;
+  margin-top: 20px;
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.join-card > a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 500px) {
+  .join-card {
+    padding: 28px 22px;
+  }
+}

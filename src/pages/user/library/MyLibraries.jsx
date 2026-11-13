@@ -16,7 +16,9 @@ const FILTERS = [
 ];
 
 // userId is a prop for now; later it can come from getCurrentUser() / auth context.
-export default function MyLibraries({ userId = 1 }) {
+export default function MyLibraries() {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const userId = currentUser?.id ?? 1;
   const [libraries, setLibraries] = useState([]);
   const [status, setStatus] = useState("loading"); // loading | error | ready
   const [filter, setFilter] = useState("all");

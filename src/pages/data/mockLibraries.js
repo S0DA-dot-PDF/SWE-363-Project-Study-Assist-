@@ -9,6 +9,8 @@ export const mockLibraries = [
     description: "Lecture notes and practice quizzes for trees, graphs and hashing.",
     ownerId: 2,
     memberIds: [1],
+    joinCode: "ICS202-AB10",
+    acceptingMembers: true,
   },
   {
     id: 102,
@@ -17,6 +19,8 @@ export const mockLibraries = [
     description: "Requirements, design patterns and testing material.",
     ownerId: 2,
     memberIds: [1],
+    joinCode: "SWE316-AB11",
+    acceptingMembers: true,
   },
   {
     id: 103,
@@ -25,6 +29,8 @@ export const mockLibraries = [
     description: "Lecture notes, quizzes and flashcards for web development.",
     ownerId: 1,
     memberIds: [],
+    joinCode: "SWE363-AB12",
+    acceptingMembers: true,
   },
   {
     id: 104,
@@ -33,5 +39,7 @@ export const mockLibraries = [
     description: "Lecture notes and practice quizzes for relational databases, SQL and NoSQL.",
     ownerId: 1,
     memberIds: [],
+    joinCode: "ICS321-AB13",
+    acceptingMembers: false,
   },
 ];

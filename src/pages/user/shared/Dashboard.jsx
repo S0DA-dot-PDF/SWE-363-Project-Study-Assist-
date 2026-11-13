@@ -9,13 +9,33 @@ import {
   CircleAlert,
 } from "lucide-react";
 
+import { useEffect, useState } from "react";
+import { getLibrariesForUser } from "../../data";
+
 function Dashboard() {
     //Retrieve the currently logged-in user's information from localStorage
   const currentUser = JSON.parse(
   localStorage.getItem("currentUser")
 );
 //Store the user's joined libraries (currently empty)*******
-  const libraries = [];
+  //const libraries = [];
+  const [libraries, setLibraries] = useState([]);
+
+useEffect(() => {
+  async function loadLibraries() {
+    try {
+      const data = await getLibrariesForUser(currentUser.id);
+      setLibraries(data);
+    } catch (error) {
+      console.error("Failed to load libraries:", error);
+    }
+  }
+
+  if (currentUser?.id != null) {
+    loadLibraries();
+  }
+}, [currentUser?.id]);
+
 
   return (
     <main className="dashboard-page">
@@ -38,7 +58,7 @@ function Dashboard() {
         <p>View your educational libraries.</p>
         </Link>
 
-        <Link to="/join-library" className="dashboard-card">
+        <Link to="/libraries/join" className="dashboard-card">
         <Library className="dashboard-icon" size={32} />
         <h2>Join Library</h2>
         <p>Explore and join a new library.</p>
@@ -65,7 +85,7 @@ function Dashboard() {
             <p>Join a library or create one to start learning.</p>
 
             <div className="dashboard-actions">
-              <Link to="/join-library" className="primary-button">
+              <Link to="/libraries/join" className="primary-button">
                 Join a Library
               </Link>
 

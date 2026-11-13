@@ -11,6 +11,7 @@ import CreateQuiz from "./pages/user/quiz/CreateQuiz";
 import GeneratedQuiz from "./pages/user/quiz/GeneratedQuiz";
 import QuizResults from "./pages/user/quiz/QuizResults";
 import MyLibraries from "./pages/user/library/MyLibraries";
+import JoinLibrary from "./pages/user/library/JoinLibrary";
 
 function ProtectedRoute({ children }) {
   const currentUser = localStorage.getItem("currentUser");
@@ -67,6 +68,7 @@ function App() {
              }
         />
         <Route path="/libraries" element={<MyLibraries />} />
+        <Route path="/libraries/join" element={<JoinLibrary />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
