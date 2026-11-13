@@ -105,9 +105,9 @@ function App() {
         <Route
            path="/admin/supportTickets"
            element={
-           //<ProtectedRoute>
+           <ProtectedRoute>
            <SupportTickets />
-           //</ProtectedRoute>
+           </ProtectedRoute>
                   }
         />
 
