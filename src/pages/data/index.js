@@ -180,3 +180,37 @@ export async function regenerateJoinCode(id) {
   lib.joinCode = makeJoinCode(lib.courseCode);
   return lib.joinCode;
 }
+/**  
+ * LIB-05
+ * Mock upload for LIB-05.
+ * Simulates upload progress and handles failures.
+ * TEST HOOK: a file whose name contains "fail" (e.g. fail.pdf) rejects, so the "upload failed" state can be tested. Remove this line when the real API replaces the mock.
+ */
+export function uploadMaterial(libraryId, { name, file }, onProgress = () => {}) {
+  return new Promise((resolve, reject) => {
+    let percent = 0;
+    const timer = setInterval(() => {
+      percent = Math.min(100, percent + 10);
+      onProgress(percent);
+
+      if (percent === 50 && file.name.toLowerCase().includes("fail")) {
+        clearInterval(timer);
+        reject(new Error("UPLOAD_FAILED"));
+        return;
+      }
+
+      if (percent === 100) {
+        clearInterval(timer);
+        const material = {
+          id: Math.max(0, ...mockMaterials.map((m) => m.id)) + 1,
+          libraryId: Number(libraryId),
+          name,
+          fileName: file.name,
+          uploadedAt: new Date().toISOString().slice(0, 10),
+        };
+        mockMaterials.push(material);
+        resolve(material);
+      }
+    }, 150);
+  });
+}

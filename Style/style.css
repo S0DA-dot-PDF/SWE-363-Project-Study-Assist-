@@ -1460,3 +1460,52 @@ body {
     flex-direction: column-reverse;
   }
 }
+
+/* ===== Upload Material (LIB-05) ===== */
+
+.create-card input[type="file"] {
+  padding: 10px 12px;
+  background-color: #f9fafb;
+  cursor: pointer;
+}
+
+.create-card input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.create-card .up-file-info {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.up-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+  color: #374151;
+  font-size: 14px;
+}
+
+.up-progress-track {
+  height: 8px;
+  overflow: hidden;
+  background-color: #e5e7eb;
+  border-radius: 999px;
+}
+
+.up-progress-bar {
+  height: 100%;
+  background-color: #2563eb;
+  border-radius: 999px;
+  transition: width 0.15s linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .up-progress-bar {
+    transition: none;
+  }
+}
