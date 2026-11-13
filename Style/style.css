@@ -654,3 +654,140 @@ body {
 .report-problem-button:hover {
   background-color: #eff6ff;
 }
+
+.profile-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 32px;
+  background-color: #f4f7fb;
+}
+
+.profile-card {
+  width: 100%;
+  max-width: 600px;
+  padding: 40px;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.profile-card h1 {
+  color: #1f2937;
+}
+
+.profile-information {
+  margin: 24px 0;
+  padding: 20px;
+  background-color: #f8fafc;
+  border-radius: 10px;
+}
+
+.profile-information strong {
+  color: #374151;
+}
+
+.score-history {
+  margin-top: 24px;
+}
+
+.score-history h2 {
+  color: #2563eb;
+}
+
+.profile-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.profile-actions button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  background-color: #dc2626;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.profile-actions button:hover {
+  background-color: #b91c1c;
+}
+
+.profile-avatar {
+  width: 90px;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 24px;
+  border-radius: 50%;
+  background-color: #2563eb;
+  color: white;
+  font-size: 42px;
+  font-weight: 700;
+}
+
+.profile-points {
+  margin-top: 24px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #eff6ff;
+  text-align: center;
+}
+
+.profile-points h2 {
+  margin: 0 0 8px;
+  color: #374151;
+  font-size: 20px;
+}
+
+.profile-points p {
+  margin: 0;
+  color: #2563eb;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.profile-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 32px;
+  background-color: #f4f7fb;
+}
+
+.profile-card {
+  width: 100%;
+  max-width: 600px;
+  padding: 40px;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.profile-information {
+  margin: 24px 0;
+  padding: 20px;
+  background-color: #f8fafc;
+  border-radius: 10px;
+}
+
+.profile-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.profile-actions button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  background-color: #dc2626;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}

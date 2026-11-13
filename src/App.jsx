@@ -10,6 +10,7 @@ import Dashboard from "./pages/user/shared/Dashboard";
 import CreateQuiz from "./pages/user/quiz/CreateQuiz";
 import GeneratedQuiz from "./pages/user/quiz/GeneratedQuiz";
 import QuizResults from "./pages/user/quiz/QuizResults";
+import Profile from "./pages/user/shared/Profile";
 
 function ProtectedRoute({ children }) {
   const currentUser = localStorage.getItem("currentUser");
@@ -62,6 +63,14 @@ function App() {
           element={
             <ProtectedRoute>
               <QuizResults />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
             </ProtectedRoute>
           }
         />
