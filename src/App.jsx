@@ -12,6 +12,7 @@ import GeneratedQuiz from "./pages/user/quiz/GeneratedQuiz";
 import QuizResults from "./pages/user/quiz/QuizResults";
 import Profile from "./pages/user/shared/Profile";
 import Comments from "./pages/user/shared/Comments";
+import ReportProblem from "./pages/user/shared/ReportProblem";
 
 function ProtectedRoute({ children }) {
   const currentUser = localStorage.getItem("currentUser");
@@ -85,7 +86,16 @@ function App() {
             </ProtectedRoute>
           }
         />
-        
+
+        <Route
+        path="/report-problem"
+        element={
+          <ProtectedRoute>
+            <ReportProblem />
+          </ProtectedRoute>
+        }
+        />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
