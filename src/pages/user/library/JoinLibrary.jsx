@@ -12,7 +12,8 @@ const ROUTES = {
 export default function JoinLibrary() {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   const userId = currentUser?.id ?? 1;
-  const [code, setCode] = useState("");
+  const [searchParams] = useSearchParams();
+  const [code, setCode] = useState(searchParams.get("code") ?? "");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   // null | { type: "member" | "joined", library }
