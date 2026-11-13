@@ -987,3 +987,166 @@ body {
     padding: 28px 22px;
   }
 }
+
+/* ===== Create Library (LIB-03) ===== */
+
+.create-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  background-color: #f4f7fb;
+}
+
+.create-card {
+  width: 100%;
+  max-width: 500px;
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.create-card h1 {
+  margin: 0 0 10px;
+  color: #1f2937;
+  font-size: 30px;
+}
+
+.create-card > p {
+  margin-bottom: 24px;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.create-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.create-card label {
+  margin-top: 6px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.create-card input,
+.create-card textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 15px;
+}
+
+.create-card textarea {
+  resize: vertical;
+}
+
+.create-card input:focus,
+.create-card textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.create-card input[aria-invalid="true"] {
+  border-color: #dc2626;
+}
+
+.create-card form button[type="submit"] {
+  margin-top: 14px;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: #2563eb;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.create-card form button[type="submit"]:hover:not(:disabled) {
+  background-color: #1d4ed8;
+}
+
+.create-card form button[type="submit"]:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.create-card .error-message,
+.create-card .success-message {
+  margin: 0;
+  font-size: 14px;
+}
+
+.create-card > a {
+  display: inline-block;
+  margin-top: 20px;
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.create-card > a:hover {
+  text-decoration: underline;
+}
+
+/* Success view: joining code */
+.create-code-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  background-color: #eff6ff;
+  border: 1px dashed #2563eb;
+  border-radius: 8px;
+}
+
+.create-code {
+  color: #1d4ed8;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  overflow-wrap: anywhere;
+}
+
+.create-copy {
+  padding: 8px 14px;
+  border: 1px solid #2563eb;
+  border-radius: 8px;
+  background-color: white;
+  color: #2563eb;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.create-copy:hover {
+  background-color: #dbeafe;
+}
+
+.create-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.create-link {
+  flex: 1;
+  text-align: center;
+}
+
+@media (max-width: 500px) {
+  .create-card {
+    padding: 28px 22px;
+  }
+
+  .create-actions {
+    flex-direction: column;
+  }
+}

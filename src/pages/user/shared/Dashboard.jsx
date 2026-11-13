@@ -70,7 +70,7 @@ useEffect(() => {
         <p>Participate in an educational match.</p>
         </Link>
 
-        <Link to="/create-library" className="dashboard-card">
+        <Link to="/libraries/create" className="dashboard-card">
         <Plus className="dashboard-icon" size={32} />
         <h2>Create Library</h2>
         <p>Create your own study library.</p>
@@ -89,7 +89,7 @@ useEffect(() => {
                 Join a Library
               </Link>
 
-              <Link to="/create-library" className="secondary-button">
+              <Link to="/libraries/create" className="secondary-button">
                 Create a Library
               </Link>
             </div>

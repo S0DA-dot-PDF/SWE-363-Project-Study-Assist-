@@ -43,3 +43,34 @@ export async function joinLibrary(libraryId, userId) {
   if (!lib || !lib.acceptingMembers) throw new Error("Library unavailable");
   if (!lib.memberIds.includes(userId)) lib.memberIds.push(userId);
 }
+/**
+ * LIB-03
+ * Creates a library owned by `ownerId` and generates its joining code.
+ * Mock only: the new library lives in memory and resets on page refresh.
+ */
+export async function createLibrary(ownerId, { name, courseCode, description }) {
+  await delay();
+
+  const cleanCourse = courseCode.trim().toUpperCase();
+
+  // Generate a code like "SWE363-K7QX" that no other library uses
+  let joinCode;
+  do {
+    const suffix = Math.random().toString(36).slice(2, 6).toUpperCase();
+    joinCode = `${cleanCourse.replace(/\s+/g, "")}-${suffix}`;
+  } while (mockLibraries.some((l) => l.joinCode === joinCode));
+
+  const library = {
+    id: Math.max(0, ...mockLibraries.map((l) => l.id)) + 1,
+    name: name.trim(),
+    courseCode: cleanCourse,
+    description: description.trim(),
+    ownerId,
+    memberIds: [],
+    joinCode,
+    acceptingMembers: true,
+  };
+
+  mockLibraries.push(library);
+  return { ...library, isOwner: true };
+}

@@ -5,7 +5,7 @@ import { getLibrariesForUser } from "../../data";
 // Placeholder routes: update when the router is finalised.
 const ROUTES = {
   join: "/libraries/join",             // LIB-02
-  create: "/libraries/new",            // LIB-03
+  create: "/libraries/create",            // LIB-03
   details: (id) => `/libraries/${id}`, // LIB-04
 };
 
