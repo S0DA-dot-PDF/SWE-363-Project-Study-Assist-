@@ -12,7 +12,7 @@ import GeneratedQuiz from "./pages/user/quiz/GeneratedQuiz";
 import QuizResults from "./pages/user/quiz/QuizResults";
 import QuestionEditor from "./pages/user/quiz/QuestionEditor";
 import QuizAnalytics from "./pages/user/educator/QuizAnalytics";
-
+import  SupportTickets from "./pages/admin/SupportTickets.jsx"
 function ProtectedRoute({ children }) {
   const currentUser = localStorage.getItem("currentUser");
 
@@ -96,10 +96,19 @@ function App() {
         <Route
           path="/educator/analytics"
           element={
-            //<EducatorRoute>
+            <EducatorRoute>
               <QuizAnalytics />
-            //</EducatorRoute>
+            </EducatorRoute>
           }
+        />
+
+        <Route
+           path="/admin/supportTickets"
+           element={
+           //<ProtectedRoute>
+           <SupportTickets />
+           //</ProtectedRoute>
+                  }
         />
 
         <Route path="*" element={<NotFound />} />
