@@ -80,7 +80,7 @@ function Dashboard() {
               <p>Host an educational live match.</p>
             </Link>
 
-            <Link to="/my-quizzes" className="dashboard-card">
+            <Link to="/quizzes/create" className="dashboard-card">
               <ClipboardList className="dashboard-icon" size={32} />
               <h2>My Quizzes</h2>
               <p>Create and manage your quizzes.</p>
@@ -145,7 +145,7 @@ function Dashboard() {
 
       {isEducator && (
         <section className="student-summary">
-          <Link to="/my-quizzes" className="summary-box summary-link">
+          <Link to="/quizzes/generated" className="summary-box summary-link">
             <ClipboardList className="summary-icon" size={28} />
             <h3>Recent Quizzes</h3>
             <p>No quizzes yet</p>
@@ -157,7 +157,7 @@ function Dashboard() {
             <p>Review student questions</p>
           </Link>
 
-          <Link to="/results" className="summary-box summary-link">
+          <Link to="/quizzes/results" className="summary-box summary-link">
             <BarChart3 className="summary-icon" size={28} />
             <h3>Student Results</h3>
             <p>View quiz performance</p>
