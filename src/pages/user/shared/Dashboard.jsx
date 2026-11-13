@@ -11,6 +11,7 @@ import {
   MessageCircle,
   ClipboardList,
   BarChart3,
+  Sparkles,
 } from "lucide-react";
 
 function Dashboard() {
@@ -68,6 +69,17 @@ function Dashboard() {
               <Gamepad2 className="dashboard-icon" size={32} />
               <h2>Join Live Match</h2>
               <p>Participate in an educational match.</p>
+            </Link>
+            
+            <Link to="/ai-study-help" className="dashboard-card ai-study-card">
+              <Sparkles className="dashboard-icon" size={32} />
+
+              <h2>AI Study Help</h2>
+
+              <p>
+                Generate AI summaries for educational materials and explanations
+                for incorrect answers.
+              </p>
             </Link>
           </>
         )}

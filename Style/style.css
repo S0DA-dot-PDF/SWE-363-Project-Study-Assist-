@@ -1323,3 +1323,20 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+.ai-study-card {
+  grid-column: 1 / -1;
+}
+.ai-study-card p {
+  max-width: 100%;
+}
+
+.ai-study-card p {
+  max-width: 700px;
+}
+
+@media (max-width: 800px) {
+  .ai-study-card {
+    grid-column: span 1;
+  }
+}
