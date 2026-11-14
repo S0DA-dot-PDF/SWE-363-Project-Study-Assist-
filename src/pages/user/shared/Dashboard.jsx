@@ -14,7 +14,7 @@ import {
   Sparkles,
 } from "lucide-react";
 
-function Dashboard() {
+function Dashboard({ activeAdvertisement }) {
   //Retrieve the currently logged-in user's information from localStorage
   const currentUser = JSON.parse(
     localStorage.getItem("currentUser")
@@ -43,7 +43,15 @@ function Dashboard() {
           View Profile
         </Link>
       </section>
-
+{activeAdvertisement && (
+        <section className="dashboard-ad">
+          {activeAdvertisement.type.startsWith("image/") ? (
+            <img src={activeAdvertisement.url} alt="Advertisement" />
+          ) : (
+            <video src={activeAdvertisement.url} controls />
+          )}
+        </section>
+      )}
       <section className="dashboard-shortcuts">
         <Link to="/libraries" className="dashboard-card">
           <BookOpen className="dashboard-icon" size={32} />
@@ -56,7 +64,11 @@ function Dashboard() {
           <h2>Create Library</h2>
           <p>Create your own study library.</p>
         </Link>
-
+        <Link to="/quizzes/create" className="dashboard-card">
+          <ClipboardList className="dashboard-icon" size={32} />
+          <h2>Create AI Quiz</h2>
+          <p>Generate a quiz from your study materials.</p>
+        </Link>
         {isStudent && (
           <>
             <Link to="/join-library" className="dashboard-card">
@@ -92,11 +104,6 @@ function Dashboard() {
               <p>Host an educational live match.</p>
             </Link>
 
-            <Link to="/quizzes/create" className="dashboard-card">
-              <ClipboardList className="dashboard-icon" size={32} />
-              <h2>My Quizzes</h2>
-              <p>Create and manage your quizzes.</p>
-            </Link>
           </>
         )}
       </section>
@@ -169,9 +176,9 @@ function Dashboard() {
             <p>Review student questions</p>
           </Link>
 
-          <Link to="/quizzes/results" className="summary-box summary-link">
+          <Link to="/educator/analytics" className="summary-box summary-link">
             <BarChart3 className="summary-icon" size={28} />
-            <h3>Student Results</h3>
+            <h3>Quiz Analytics</h3>
             <p>View quiz performance</p>
           </Link>
         </section>
@@ -183,6 +190,7 @@ function Dashboard() {
           Report a Problem
         </Link>
       </div>
+
     </main>
   );
 }
