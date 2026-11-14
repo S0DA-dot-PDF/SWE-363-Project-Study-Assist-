@@ -59,12 +59,14 @@ function Login() {
 
     localStorage.setItem("currentUser", JSON.stringify(user));
 
-    if (user.role === "student") {
-    navigate("/dashboard");
-    } else if (user.role === "educator") {
-    navigate("/educator-dashboard");
+    //Redirect all authenticated users to the role-based dashboard
+    if (
+      user.role === "student" ||
+      user.role === "educator"
+    ) {
+      navigate("/dashboard");
     } else if (user.role === "admin") {
-    navigate("/admin-dashboard");
+      navigate("/admin-dashboard");
     }
   };
 

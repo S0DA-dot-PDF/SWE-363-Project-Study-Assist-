@@ -12,7 +12,12 @@ import GeneratedQuiz from "./pages/user/quiz/GeneratedQuiz";
 import QuizResults from "./pages/user/quiz/QuizResults";
 import QuestionEditor from "./pages/user/quiz/QuestionEditor";
 import QuizAnalytics from "./pages/user/educator/QuizAnalytics";
-import  SupportTickets from "./pages/admin/SupportTickets.jsx"
+import SupportTickets from "./pages/admin/SupportTickets.jsx";
+import Profile from "./pages/user/shared/Profile";
+import Comments from "./pages/user/shared/Comments";
+import ReportProblem from "./pages/user/shared/ReportProblem";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+
 function ProtectedRoute({ children }) {
   const currentUser = localStorage.getItem("currentUser");
 
@@ -84,32 +89,40 @@ function App() {
           }
         />
 
-        <Route
-          path="/quizzes/editor"
-          element={
-              <EducatorRoute>
-                <QuestionEditor />
-              </EducatorRoute>
-          }
-        />
+       <Route
+         path="/quizzes/editor"
+         element={<EducatorRoute><QuestionEditor /></EducatorRoute>}
+       />
 
-        <Route
-          path="/educator/analytics"
-          element={
-            <EducatorRoute>
-              <QuizAnalytics />
-            </EducatorRoute>
-          }
-        />
+       <Route
+         path="/profile"
+         element={<ProtectedRoute><Profile /></ProtectedRoute>}
+       />
 
-        <Route
-           path="/admin/supportTickets"
-           element={
-           <ProtectedRoute>
-           <SupportTickets />
-           </ProtectedRoute>
-                  }
-        />
+       <Route
+         path="/educator/analytics"
+         element={<EducatorRoute><QuizAnalytics /></EducatorRoute>}
+       />
+
+       <Route
+         path="/comments"
+         element={<ProtectedRoute><Comments /></ProtectedRoute>}
+       />
+
+       <Route
+         path="/admin/supportTickets"
+         element={<ProtectedRoute><SupportTickets /></ProtectedRoute>}
+       />
+
+       <Route
+         path="/report-problem"
+         element={<ProtectedRoute><ReportProblem /></ProtectedRoute>}
+       />
+
+       <Route
+         path="/admin-dashboard"
+         element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>}
+       />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
