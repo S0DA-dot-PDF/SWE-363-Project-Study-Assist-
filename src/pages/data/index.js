@@ -118,10 +118,8 @@ export async function getFlashcardSets(libraryId) {
 
 export async function getFlashcardSetsForUser(userId) {
   await delay(200);
-  const accessibleLibraries = mockLibraries.filter(
-    (library) =>
-      String(library.ownerId) === String(userId) ||
-      library.memberIds.some((memberId) => String(memberId) === String(userId))
+const accessibleLibraries = mockLibraries.filter(
+    (library) => String(library.ownerId) === String(userId)
   );
   const librariesById = new Map(accessibleLibraries.map((library) => [library.id, library]));
 
@@ -144,9 +142,7 @@ export async function getFlashcardSet(id, userId) {
 
   const library = mockLibraries.find((item) => item.id === set.libraryId);
   if (!library) return null;
-  const hasAccess =
-    String(library.ownerId) === String(userId) ||
-    library.memberIds.some((memberId) => String(memberId) === String(userId));
+  const hasAccess = String(library.ownerId) === String(userId);
   if (!hasAccess) return null;
 
   return {
