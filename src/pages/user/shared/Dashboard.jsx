@@ -18,6 +18,7 @@ import {
 
 import { useEffect, useState } from "react";
 import { getLibrariesForUser } from "../../data";
+import { mockFlashcardCards, mockFlashcardSets } from "../../data/mockContent";
 
 function Dashboard({ activeAdvertisement }) {
   //Retrieve the currently logged-in user's information from localStorage
@@ -51,6 +52,7 @@ useEffect(() => {
   const createFlashcardsPath = ownedLibrary
     ? `/libraries/${ownedLibrary.id}/flashcards/create`
     : "/libraries/create";
+  const demoFlashcardSet = mockFlashcardSets[0];
 
   return (
     <main className="dashboard-page">
@@ -124,10 +126,18 @@ useEffect(() => {
               </p>
             </Link>
 
-            <Link to="/my-flashcards" className="dashboard-card">
+            <Link
+              to={`/flashcards/${demoFlashcardSet.id}/study`}
+              state={{
+                title: demoFlashcardSet.title,
+                cards: mockFlashcardCards.slice(0, demoFlashcardSet.cardCount),
+                libraryId: demoFlashcardSet.libraryId,
+              }}
+              className="dashboard-card"
+            >
               <Play className="dashboard-icon" size={32} />
               <h2>Play Flashcards</h2>
-              <p>Study flashcard sets from your libraries.</p>
+              <p>Start studying {demoFlashcardSet.title}.</p>
             </Link>
 
             <Link to="/summaries" className="dashboard-card ai-study-card">
