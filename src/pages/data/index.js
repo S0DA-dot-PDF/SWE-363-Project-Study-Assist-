@@ -1,5 +1,6 @@
 import { mockLibraries } from "./mockLibraries";
 import { mockMaterials, mockQuizzes, mockFlashcardSets } from "./mockContent";
+import { mockUsers } from "./mockUsers";
 
 
 // Simulates network delay so Loading / Error states can be tested.
@@ -214,3 +215,224 @@ export function uploadMaterial(libraryId, { name, file }, onProgress = () => {})
     }, 150);
   });
 }
+
+
+const userDelay = (ms = 250) =>
+  new Promise((resolve) => setTimeout(resolve, ms));
+
+const cloneUser = (u) => {
+  const { password, ...safe } = u;
+  return { ...safe };
+};
+
+const activeAdminCount = () =>
+  mockUsers.filter(
+    (u) => u.role === "admin" && !u.isSuspended
+  ).length;
+
+const ensureActor = (actorId) => {
+  const actor = mockUsers.find(
+    (u) => String(u.id) === String(actorId)
+  );
+
+  if (
+    !actor ||
+    actor.role !== "admin" ||
+    actor.isSuspended
+  ) {
+    throw new Error("NOT_AUTHORIZED");
+  }
+};
+
+const targetForUpdate = (actorId, targetId, version) => {
+  ensureActor(actorId);
+
+  if (String(actorId) === String(targetId)) {
+    throw new Error("SELF_ACTION");
+  }
+
+  const target = mockUsers.find(
+    (u) => String(u.id) === String(targetId)
+  );
+
+  if (!target) throw new Error("NOT_FOUND");
+
+  if ((target.version ?? 1) !== version) {
+    throw new Error("STALE_RECORD");
+  }
+
+  return target;
+};
+
+const protectLastAdmin = (target) => {
+  if (
+    target.role === "admin" &&
+    !target.isSuspended &&
+    activeAdminCount() <= 1
+  ) {
+    throw new Error("LAST_ADMIN");
+  }
+};
+
+const touch = (target) => {
+  target.version = (target.version ?? 1) + 1;
+  return cloneUser(target);
+};
+
+export async function getUsers() {
+  await userDelay();
+  return mockUsers.map(cloneUser);
+}
+
+export async function changeUserRole(
+  actorId,
+  targetId,
+  role,
+  version
+) {
+  await userDelay();
+
+  const target = targetForUpdate(
+    actorId,
+    targetId,
+    version
+  );
+
+  if (!["student", "educator", "admin"].includes(role)) {
+    throw new Error("INVALID_ROLE");
+  }
+
+  if (target.role === "admin" && role !== "admin") {
+    protectLastAdmin(target);
+  }
+
+  target.role = role;
+
+  if (role === "educator") {
+    target.isApproved = true;
+    target.educatorRequestStatus = "approved";
+  } else {
+    target.isApproved = true;
+    target.educatorRequestStatus = undefined;
+  }
+
+  return touch(target);
+}
+
+export async function suspendUser(
+  actorId,
+  targetId,
+  reason,
+  version
+) {
+  await userDelay();
+
+  const target = targetForUpdate(
+    actorId,
+    targetId,
+    version
+  );
+
+  if (!reason?.trim()) {
+    throw new Error("REASON_REQUIRED");
+  }
+
+  if (target.isSuspended) {
+    throw new Error("ALREADY_SUSPENDED");
+  }
+
+  protectLastAdmin(target);
+
+  target.isSuspended = true;
+  target.suspensionReason = reason.trim();
+
+  return touch(target);
+}
+
+export async function reactivateUser(
+  actorId,
+  targetId,
+  version
+) {
+  await userDelay();
+
+  const target = targetForUpdate(
+    actorId,
+    targetId,
+    version
+  );
+
+  if (!target.isSuspended) {
+    throw new Error("NOT_SUSPENDED");
+  }
+
+  target.isSuspended = false;
+  target.suspensionReason = undefined;
+
+  return touch(target);
+}
+
+export async function deleteUser(
+  actorId,
+  targetId,
+  reason,
+  version
+) {
+  await userDelay();
+
+  const target = targetForUpdate(
+    actorId,
+    targetId,
+    version
+  );
+
+  if (!reason?.trim()) {
+    throw new Error("REASON_REQUIRED");
+  }
+
+  protectLastAdmin(target);
+
+  mockUsers.splice(mockUsers.indexOf(target), 1);
+
+  return true;
+}
+
+export async function reviewEducatorRequest(
+  actorId,
+  targetId,
+  decision,
+  version
+) {
+  await userDelay();
+
+  const target = targetForUpdate(
+    actorId,
+    targetId,
+    version
+  );
+
+  if (
+    decision !== "approve" &&
+    decision !== "reject"
+  ) {
+    throw new Error("INVALID_DECISION");
+  }
+
+  const pending =
+    target.educatorRequestStatus === "pending" ||
+    (target.role === "educator" &&
+      !target.isApproved &&
+      target.educatorRequestStatus !== "rejected");
+
+  if (!pending || target.isSuspended) {
+    throw new Error("REQUEST_NOT_PENDING");
+  }
+
+  target.educatorRequestStatus =
+    decision === "approve" ? "approved" : "rejected";
+
+  target.isApproved = decision === "approve";
+
+  return touch(target);
+}
+

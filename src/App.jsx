@@ -21,6 +21,7 @@ import Profile from "./pages/user/shared/Profile";
 import Comments from "./pages/user/shared/Comments";
 import ReportProblem from "./pages/user/shared/ReportProblem";
 import AdminDashboard from "./pages/admin/AdminDashboard";
+import UserManagement from "./pages/admin/UserManagement";
 
 function ProtectedRoute({ children }) {
   const currentUser = localStorage.getItem("currentUser");
@@ -119,6 +120,7 @@ function App() {
           </ProtectedRoute>
         }
         />
+       <Route path="/admin/users" element={<UserManagement />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
