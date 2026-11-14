@@ -22,6 +22,38 @@ const unansweredCount = answers.filter(
 
 const incorrectCount =
   questions.length - correctCount - unansweredCount;
+
+  function getOptionClass(question, questionIndex, optionIndex) {
+    const selectedAnswer = answers[questionIndex];
+
+    if (optionIndex === question.correctAnswer) {
+      return "review-option correct-option";
+    }
+
+    if (optionIndex === selectedAnswer) {
+      return "review-option wrong-option";
+    }
+
+    return "review-option";
+  }
+
+function getCardClass(question, questionIndex) {
+  const selectedAnswer = answers[questionIndex];
+
+  if (
+    selectedAnswer === null ||
+    selectedAnswer === undefined
+  ) {
+    return "review-card unanswered-card";
+  }
+
+  if (selectedAnswer === question.correctAnswer) {
+    return "review-card correct-card";
+  }
+
+  return "review-card incorrect-card";
+}
+
   return (
     <main className="container py-5">
       <div className="bg-white border rounded-4 p-4 mx-auto quiz-form">
