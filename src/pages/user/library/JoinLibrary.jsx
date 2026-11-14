@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useSearchParams } from "react-router-dom";
 import { getLibraryByCode, joinLibrary } from "../../data";
 
 // Placeholder routes: keep in sync with MyLibraries.jsx.
@@ -12,6 +12,7 @@ const ROUTES = {
 export default function JoinLibrary() {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   const userId = currentUser?.id ?? 1;
+  const isEducator = currentUser?.role === "educator";
   const [searchParams] = useSearchParams();
   const [code, setCode] = useState(searchParams.get("code") ?? "");
   const [error, setError] = useState("");
@@ -27,6 +28,10 @@ export default function JoinLibrary() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (isEducator) {
+        setError("Educators cannot join libraries.");
+        return;
+    }
     const trimmed = code.trim();
 
     // Validation 1: code not empty
@@ -66,6 +71,10 @@ export default function JoinLibrary() {
       setBusy(false);
     }
   };
+
+  if (isEducator) {
+    return <Navigate to="/libraries" replace />;
+    }
 
   return (
     <main className="join-page">

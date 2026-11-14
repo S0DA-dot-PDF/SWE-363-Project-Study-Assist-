@@ -20,7 +20,7 @@ const ROUTES = {
   join: "/libraries/join",                          // LIB-02
   upload: (id) => `/libraries/${id}/upload`,        // LIB-05
   createMenu: (id) => `/libraries/${id}/create`,    // LIB-06
-  quiz: (id) => `/quizzes/${id}`,                   // QZ-05
+  quiz: (id) => "/quizzes/generated",                   // QZ-05
   flashcards: (id) => `/flashcards/${id}`,          // FC-03
   results: (id) => `/quizzes/${id}/results`,        // EDU-02
   summarise: (libraryId, materialId) => `/summaries?library=${libraryId}&material=${materialId}`, // STU-01

@@ -3,7 +3,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { getQuizzesForUser } from "../../data";
 
-const QUIZ_DETAILS_ROUTE = (id) => `/quizzes/${id}`;
+const QUIZ_DETAILS_ROUTE = (id) => "/quizzes/generated";
 
 export default function MyQuizzes() {
   const [currentUser] = useState(() => {
@@ -151,6 +151,7 @@ export default function MyQuizzes() {
 
                   <Link
                     className="primary-button mq-open"
+                    
                     to={QUIZ_DETAILS_ROUTE(quiz.id)}
                   >
                     Open Quiz

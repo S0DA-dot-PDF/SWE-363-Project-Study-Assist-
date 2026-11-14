@@ -42,6 +42,82 @@ const incorrectCount =
             Unanswered: {unansweredCount}
           </span>
         </div>
+
+{/* Individual question review */}
+<section className="mt-4 mb-4">
+  <h2 className="h4 mb-3">Review Your Answers</h2>
+
+  {questions.map((question, index) => {
+    const selectedIndex = answers[index];
+
+    const isUnanswered = selectedIndex == null;
+
+    const isCorrect =
+      !isUnanswered &&
+      selectedIndex === question.correctAnswer;
+
+    const selectedAnswer = isUnanswered
+      ? "Not answered"
+      : question.options[selectedIndex];
+
+    const correctAnswer =
+      question.options[question.correctAnswer];
+
+    return (
+      <div
+        key={question.id ?? index}
+        className="border rounded p-3 mb-3"
+      >
+        <h3 className="h6">Question {index + 1}</h3>
+
+        <p>{question.question}</p>
+
+        <p>
+          <strong>Status: </strong>
+          {isUnanswered
+            ? "Unanswered"
+            : isCorrect
+              ? "Correct"
+              : "Incorrect"}
+        </p>
+
+        <p>
+          <strong>Your Answer: </strong>
+          {selectedAnswer}
+        </p>
+
+        <p>
+          <strong>Correct Answer: </strong>
+          {correctAnswer}
+        </p>
+
+        {!isCorrect && !isUnanswered && (
+          <button
+            type="button"
+            className="btn btn-outline-primary"
+            onClick={() =>
+              navigate("/summaries", {
+                state: {
+                  mode: "explanation",
+                  question: question.question,
+                  selectedAnswer,
+                  correctAnswer,
+                  resultsState: {
+                    questions,
+                    answers,
+                  },
+                },
+              })
+            }
+          >
+            Explain This Answer
+          </button>
+        )}
+      </div>
+    );
+  })}
+</section>
+
         <div className="d-flex gap-2 flex-wrap">
           <button
             type="button"

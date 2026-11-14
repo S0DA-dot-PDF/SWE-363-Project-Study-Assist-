@@ -19,6 +19,7 @@ const FILTERS = [
 export default function MyLibraries() {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   const userId = currentUser?.id ?? 1;
+  const isEducator = currentUser?.role === "educator";
   const [libraries, setLibraries] = useState([]);
   const [status, setStatus] = useState("loading"); // loading | error | ready
   const [filter, setFilter] = useState("all");
@@ -42,6 +43,7 @@ export default function MyLibraries() {
   const visible = useMemo(() => {
     const q = query.trim().toLowerCase();
     return libraries.filter((lib) => {
+      if (isEducator && !lib.isOwner) return false;
       if (filter === "mine" && !lib.isOwner) return false;
       if (filter === "joined" && lib.isOwner) return false;
       return (
@@ -50,19 +52,22 @@ export default function MyLibraries() {
         lib.courseCode.toLowerCase().includes(q)
       );
     });
-  }, [libraries, filter, query]);
+  }, [libraries, filter, query, isEducator]);
 
   return (
     <main className="lib-page">
       <header className="lib-header">
         <h1>My Libraries</h1>
         <div className="lib-header-actions">
-          <Link to={ROUTES.join} className="secondary-button">
+        {!isEducator && (
+            <Link to={ROUTES.join} className="secondary-button">
             Join Library
-          </Link>
-          <Link to={ROUTES.create} className="primary-button">
+            </Link>
+        )}
+
+        <Link to={ROUTES.create} className="primary-button">
             Create Library
-          </Link>
+        </Link>
         </div>
       </header>
 
@@ -82,14 +87,20 @@ export default function MyLibraries() {
       )}
 
       {/* Empty: user has no libraries at all */}
-      {status === "ready" && libraries.length === 0 && (
+      {status === "ready" && libraries.filter((lib) => !isEducator || lib.isOwner).length === 0 && (
         <section className="lib-empty">
           <h2>You don't have any libraries yet</h2>
-          <p>Join a library with a code from your educator, or create your own.</p>
+          <p>
+            {isEducator
+                ? "Create a library to start sharing materials with your students."
+                : "Join a library with a code from your educator, or create your own."}
+          </p>
           <div className="lib-header-actions">
+            {!isEducator && (
             <Link to={ROUTES.join} className="secondary-button">
-              Join Library
+                Join Library
             </Link>
+            )}
             <Link to={ROUTES.create} className="primary-button">
               Create Library
             </Link>
@@ -100,19 +111,22 @@ export default function MyLibraries() {
       {status === "ready" && libraries.length > 0 && (
         <>
           <div className="lib-toolbar">
+            
+            {!isEducator && (
             <div className="lib-filters" role="group" aria-label="Filter libraries">
-              {FILTERS.map((f) => (
+                {FILTERS.map((f) => (
                 <button
-                  key={f.value}
-                  type="button"
-                  className={`lib-chip ${filter === f.value ? "is-active" : ""}`}
-                  aria-pressed={filter === f.value}
-                  onClick={() => setFilter(f.value)}
+                    key={f.value}
+                    type="button"
+                    className={`lib-chip ${filter === f.value ? "is-active" : ""}`}
+                    aria-pressed={filter === f.value}
+                    onClick={() => setFilter(f.value)}
                 >
-                  {f.label}
+                    {f.label}
                 </button>
-              ))}
+                ))}
             </div>
+            )}
             <input
               type="search"
               className="lib-search"
