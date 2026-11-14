@@ -10,6 +10,13 @@ import Dashboard from "./pages/user/shared/Dashboard";
 import CreateQuiz from "./pages/user/quiz/CreateQuiz";
 import GeneratedQuiz from "./pages/user/quiz/GeneratedQuiz";
 import QuizResults from "./pages/user/quiz/QuizResults";
+import MyLibraries from "./pages/user/library/MyLibraries";
+import JoinLibrary from "./pages/user/library/JoinLibrary";
+import CreateLibrary from "./pages/user/library/CreateLibrary";
+import LibraryDetails from "./pages/user/library/LibraryDetails";
+import UploadMaterial from "./pages/user/library/UploadMaterial";
+import CreateMenu from "./pages/user/library/CreateMenu";
+import AISummaries from "./pages/user/student/AISummaries";
 import QuestionEditor from "./pages/user/quiz/QuestionEditor";
 import QuizAnalytics from "./pages/user/educator/QuizAnalytics";
 import SupportTickets from "./pages/admin/SupportTickets.jsx";
@@ -17,6 +24,8 @@ import Profile from "./pages/user/shared/Profile";
 import Comments from "./pages/user/shared/Comments";
 import ReportProblem from "./pages/user/shared/ReportProblem";
 import AdminDashboard from "./pages/admin/AdminDashboard";
+import UserManagement from "./pages/admin/UserManagement";
+import MyQuizzes from "./pages/user/student/MyQuizzes";
 import AdvertisementManagement from "./pages/admin/AdvertisementManagement";
 
 function ProtectedRoute({ children }) {
@@ -104,9 +113,18 @@ function App() {
           element={
               <ProtectedRoute>
               <QuizResults />
+            </ProtectedRoute>
+             }
               </ProtectedRoute>
           }
         />
+        <Route path="/libraries" element={<MyLibraries />} />
+        <Route path="/libraries/join" element={<JoinLibrary />} />
+        <Route path="/libraries/create" element={<CreateLibrary />} />
+        <Route path="/libraries/:id" element={<LibraryDetails />} />
+        <Route path="/libraries/:id/upload" element={<UploadMaterial />} />
+        <Route path="/libraries/:id/create" element={<CreateMenu />} />
+        <Route path="/summaries" element={<AISummaries />} />
 
        <Route
          path="/quizzes/editor"
@@ -123,6 +141,23 @@ function App() {
          element={<EducatorRoute><QuizAnalytics /></EducatorRoute>}
        />
 
+        <Route
+        path="/admin-dashboard"
+        element={
+          <ProtectedRoute>
+            <AdminDashboard />
+          </ProtectedRoute>
+        }
+        />
+        <Route
+          path="/my-quizzes"
+          element={
+            <ProtectedRoute>
+              <MyQuizzes />
+            </ProtectedRoute>
+          }
+        />
+       <Route path="/admin/users" element={<UserManagement />} />
        <Route
          path="/comments"
          element={<ProtectedRoute><Comments /></ProtectedRoute>}

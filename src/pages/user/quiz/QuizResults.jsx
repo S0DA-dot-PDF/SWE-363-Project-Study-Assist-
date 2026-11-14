@@ -74,40 +74,81 @@ function getCardClass(question, questionIndex) {
             Unanswered: {unansweredCount}
           </span>
         </div>
-        <h2 className="h4">Answer Review</h2>
 
-        {
-         questions.map((question, index) =>
-         <div key={question.id} className={getCardClass(question, index)}>
-           <h3 className="review-card-title">
-             Question {index + 1}
-           </h3>
+{/* Individual question review */}
+<section className="mt-4 mb-4">
+  <h2 className="h4 mb-3">Review Your Answers</h2>
 
-           <p>{question.question}</p>
-           <div className="review-options">
-             {question.options.map((option, optionIndex) => (
-               <div key={optionIndex}className={getOptionClass(question, index, optionIndex)}>
-                 <strong>
-                   {["A", "B", "C", "D"][optionIndex]}.
-                 </strong>
+  {questions.map((question, index) => {
+    const selectedIndex = answers[index];
 
-                 <span>{option}</span>
-                 {optionIndex === question.correctAnswer && (
-                   <strong className="correct-answer-label">
-                     Correct Answer
-                   </strong>
-                 )}
-               </div>
-             ))}
-           </div>
+    const isUnanswered = selectedIndex == null;
 
+    const isCorrect =
+      !isUnanswered &&
+      selectedIndex === question.correctAnswer;
 
-         </div>
-         )}
+    const selectedAnswer = isUnanswered
+      ? "Not answered"
+      : question.options[selectedIndex];
 
+    const correctAnswer =
+      question.options[question.correctAnswer];
 
+    return (
+      <div
+        key={question.id ?? index}
+        className="border rounded p-3 mb-3"
+      >
+        <h3 className="h6">Question {index + 1}</h3>
 
+        <p>{question.question}</p>
 
+        <p>
+          <strong>Status: </strong>
+          {isUnanswered
+            ? "Unanswered"
+            : isCorrect
+              ? "Correct"
+              : "Incorrect"}
+        </p>
+
+        <p>
+          <strong>Your Answer: </strong>
+          {selectedAnswer}
+        </p>
+
+        <p>
+          <strong>Correct Answer: </strong>
+          {correctAnswer}
+        </p>
+
+        {!isCorrect && !isUnanswered && (
+          <button
+            type="button"
+            className="btn btn-outline-primary"
+            onClick={() =>
+              navigate("/summaries", {
+                state: {
+                  mode: "explanation",
+                  question: question.question,
+                  selectedAnswer,
+                  correctAnswer,
+                  resultsState: {
+                    questions,
+                    answers,
+                  },
+                },
+              })
+            }
+          >
+            Explain This Answer
+          </button>
+        )}
+      </div>
+    );
+  })}
+</section>
 
         <div className="d-flex gap-2 flex-wrap">
           <button

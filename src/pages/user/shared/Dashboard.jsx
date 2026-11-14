@@ -14,14 +14,33 @@ import {
   Sparkles,
 } from "lucide-react";
 
+import { useEffect, useState } from "react";
+import { getLibrariesForUser } from "../../data";
+
 function Dashboard({ activeAdvertisement }) {
   //Retrieve the currently logged-in user's information from localStorage
   const currentUser = JSON.parse(
-    localStorage.getItem("currentUser")
-  );
+  localStorage.getItem("currentUser")
+);
+//Store the user's joined libraries (currently empty)*******
+  //const libraries = [];
+  const [libraries, setLibraries] = useState([]);
 
-  //Store the user's joined libraries (currently empty)
-  const libraries = [];
+useEffect(() => {
+  async function loadLibraries() {
+    try {
+      const data = await getLibrariesForUser(currentUser.id);
+      setLibraries(data);
+    } catch (error) {
+      console.error("Failed to load libraries:", error);
+    }
+  }
+
+  if (currentUser?.id != null) {
+    loadLibraries();
+  }
+}, [currentUser?.id]);
+
 
   //Identify the user's role
   const isStudent = currentUser.role === "student";
@@ -59,7 +78,7 @@ function Dashboard({ activeAdvertisement }) {
           <p>View your educational libraries.</p>
         </Link>
 
-        <Link to="/create-library" className="dashboard-card">
+        <Link to="/libraries/create" className="dashboard-card">
           <Plus className="dashboard-icon" size={32} />
           <h2>Create Library</h2>
           <p>Create your own study library.</p>
@@ -71,7 +90,13 @@ function Dashboard({ activeAdvertisement }) {
         </Link>
         {isStudent && (
           <>
-            <Link to="/join-library" className="dashboard-card">
+            <Link to="/my-quizzes" className="dashboard-card">
+              <ClipboardList className="dashboard-icon" size={32} />
+              <h2>My Quizzes</h2>
+              <p>Browse published quizzes from your libraries.</p>
+            </Link>
+
+            <Link to="/libraries/join" className="dashboard-card">
               <Library className="dashboard-icon" size={32} />
               <h2>Join Library</h2>
               <p>Explore and join a new library.</p>
@@ -82,8 +107,8 @@ function Dashboard({ activeAdvertisement }) {
               <h2>Join Live Match</h2>
               <p>Participate in an educational match.</p>
             </Link>
-            
-            <Link to="/ai-study-help" className="dashboard-card ai-study-card">
+
+            <Link to="/summaries" className="dashboard-card ai-study-card">
               <Sparkles className="dashboard-icon" size={32} />
 
               <h2>AI Study Help</h2>
@@ -125,12 +150,12 @@ function Dashboard({ activeAdvertisement }) {
 
             <div className="dashboard-actions">
               {isStudent && (
-                <Link to="/join-library" className="primary-button">
+                <Link to="/libraries/join" className="primary-button">
                   Join a Library
                 </Link>
               )}
 
-              <Link to="/create-library" className="secondary-button">
+              <Link to="/libraries/create" className="secondary-button">
                 Create a Library
               </Link>
             </div>
@@ -138,6 +163,23 @@ function Dashboard({ activeAdvertisement }) {
         ) : (
           <div>
             <h2>Your Libraries</h2>
+                <div className="dashboard-library-grid">
+                {libraries.map((library) => (
+                  <Link
+                    key={library.id}
+                    to={`/libraries/${library.id}`}
+                    className="dashboard-library-card"
+                  >
+                    <h3>{library.name}</h3>
+
+                    <p>{library.courseCode}</p>
+
+                    <span>
+                      {library.isOwner ? "Mine" : "Joined"}
+                    </span>
+                  </Link>
+                ))}
+              </div>
           </div>
         )}
       </section>
