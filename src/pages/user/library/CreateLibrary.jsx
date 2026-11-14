@@ -114,6 +114,9 @@ export default function CreateLibrary() {
   return (
     <main className="create-page">
       <section className="create-card">
+      <Link to="/dashboard" className="back-dashboard">
+        ← Back to Dashboard
+      </Link>
         <h1>Create a Library</h1>
         <p>Set up a library for your course and share its code with students.</p>
 

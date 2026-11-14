@@ -8,7 +8,6 @@ const ROUTES = {
   details: (id) => `/libraries/${id}`, // LIB-04
 };
 
-
 export default function JoinLibrary() {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   const userId = currentUser?.id ?? 1;
@@ -79,6 +78,9 @@ export default function JoinLibrary() {
   return (
     <main className="join-page">
       <section className="join-card">
+        <Link to="/dashboard" className="back-dashboard">
+            ← Back to Dashboard
+        </Link>
         <h1>Join a Library</h1>
         <p>Enter the joining code you received from your educator.</p>
 

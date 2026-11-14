@@ -74,6 +74,9 @@ export default function MyQuizzes() {
 
   return (
     <main className="mq-page">
+     <Link to="/dashboard" className="back-dashboard">
+       ← Back to Dashboard
+     </Link>
       <header className="mq-header">
         <h1>My Quizzes</h1>
         <p>Browse published quizzes from your libraries.</p>

@@ -2899,3 +2899,20 @@ body {
   }
 }
 
+/* Back to Dashboard navigation */
+.back-dashboard {
+  display: inline-block;
+  width: fit-content;
+  padding: 0;
+  margin-bottom: 24px;
+  border: none;
+  background: transparent;
+  color: #2563eb;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.back-dashboard:hover {
+  text-decoration: underline;
+}

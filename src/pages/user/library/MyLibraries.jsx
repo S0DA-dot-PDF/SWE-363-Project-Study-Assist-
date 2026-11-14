@@ -56,6 +56,9 @@ export default function MyLibraries() {
 
   return (
     <main className="lib-page">
+    <Link to="/dashboard" className="back-dashboard">
+      ← Back to Dashboard
+    </Link>
       <header className="lib-header">
         <h1>My Libraries</h1>
         <div className="lib-header-actions">
