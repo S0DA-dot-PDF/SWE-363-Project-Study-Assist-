@@ -2727,3 +2727,128 @@ body {
     flex-wrap: wrap;
   }
 }
+
+
+/* ===== My Quizzes (STU-02) ===== */
+
+.mq-page {
+  min-height: 100vh;
+  padding: 40px;
+  background: #f4f7fb;
+}
+
+.mq-header {
+  margin-bottom: 24px;
+}
+
+.mq-header h1 {
+  margin: 0 0 8px;
+  color: #1f2937;
+}
+
+.mq-header p {
+  margin: 0;
+  color: #6b7280;
+}
+
+/* Library filter */
+
+.mq-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.mq-toolbar label {
+  font-weight: 600;
+  color: #374151;
+}
+
+.mq-toolbar select {
+  padding: 11px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: white;
+  font: inherit;
+  max-width: 100%;
+}
+
+.mq-toolbar select:focus {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* Quiz list */
+
+.mq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mq-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.mq-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.mq-item-info strong {
+  color: #2563eb;
+  overflow-wrap: anywhere;
+}
+
+.mq-item-info span {
+  color: #6b7280;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.mq-open {
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* Loading, error, and empty states */
+
+.mq-message {
+  padding: 32px;
+  border-radius: 12px;
+  background: white;
+  color: #6b7280;
+  text-align: center;
+}
+
+/* Responsive layout */
+
+@media (max-width: 600px) {
+  .mq-page {
+    padding: 24px;
+  }
+
+  .mq-toolbar,
+  .mq-item {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .mq-open {
+    display: block;
+  }
+}
+

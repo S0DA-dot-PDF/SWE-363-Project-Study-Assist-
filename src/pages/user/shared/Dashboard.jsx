@@ -78,6 +78,12 @@ useEffect(() => {
 
         {isStudent && (
           <>
+            <Link to="/my-quizzes" className="dashboard-card">
+              <ClipboardList className="dashboard-icon" size={32} />
+              <h2>My Quizzes</h2>
+              <p>Browse published quizzes from your libraries.</p>
+            </Link>
+
             <Link to="/libraries/join" className="dashboard-card">
               <Library className="dashboard-icon" size={32} />
               <h2>Join Library</h2>

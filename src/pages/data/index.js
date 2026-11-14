@@ -436,3 +436,41 @@ export async function reviewEducatorRequest(
   return touch(target);
 }
 
+
+/**
+ * STU-02 My Quizzes
+ * Returns published quizzes from libraries
+ * the current user owns or has joined.
+ */
+export async function getQuizzesForUser(userId) {
+  await delay(200);
+
+  // Find libraries accessible to this user.
+  const accessibleLibraries = mockLibraries.filter(
+    (lib) =>
+      lib.ownerId === Number(userId) ||
+      lib.memberIds.includes(Number(userId))
+  );
+
+  // Map library IDs to their information.
+  const byId = new Map(
+    accessibleLibraries.map((lib) => [lib.id, lib])
+  );
+
+  // Return only published quizzes.
+  return mockQuizzes
+    .filter(
+      (quiz) =>
+        quiz.status === "published" &&
+        byId.has(quiz.libraryId)
+    )
+    .map((quiz) => {
+      const library = byId.get(quiz.libraryId);
+
+      return {
+        ...quiz,
+        libraryName: library.name,
+        courseCode: library.courseCode,
+      };
+    });
+}

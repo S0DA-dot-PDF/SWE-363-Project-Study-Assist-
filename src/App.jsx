@@ -22,6 +22,7 @@ import Comments from "./pages/user/shared/Comments";
 import ReportProblem from "./pages/user/shared/ReportProblem";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import UserManagement from "./pages/admin/UserManagement";
+import MyQuizzes from "./pages/user/student/MyQuizzes";
 
 function ProtectedRoute({ children }) {
   const currentUser = localStorage.getItem("currentUser");
@@ -119,6 +120,14 @@ function App() {
             <AdminDashboard />
           </ProtectedRoute>
         }
+        />
+        <Route
+          path="/my-quizzes"
+          element={
+            <ProtectedRoute>
+              <MyQuizzes />
+            </ProtectedRoute>
+          }
         />
        <Route path="/admin/users" element={<UserManagement />} />
 

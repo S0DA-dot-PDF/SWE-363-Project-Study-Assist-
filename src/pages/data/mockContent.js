@@ -6,10 +6,24 @@ export const mockMaterials = [
   { id: 4, libraryId: 103, name: "React Intro", fileName: "react-intro.pptx", uploadedAt: "2026-09-10" },
 ];
 
+
 export const mockQuizzes = [
-  { id: 1, libraryId: 101, title: "Arrays Quiz", questionCount: 10 },
-  { id: 2, libraryId: 103, title: "React Basics Quiz", questionCount: 8 },
+  {
+    id: 1,
+    libraryId: 101,
+    title: "Arrays Quiz",
+    questionCount: 10,
+    status: "published",
+  },
+  {
+    id: 2,
+    libraryId: 103,
+    title: "React Basics Quiz",
+    questionCount: 8,
+    status: "published",
+  },
 ];
+
 
 export const mockFlashcardSets = [
   { id: 1, libraryId: 101, title: "Data Structures Terms", cardCount: 25 },
