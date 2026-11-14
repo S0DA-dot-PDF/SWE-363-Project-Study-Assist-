@@ -116,6 +116,47 @@ export async function getFlashcardSets(libraryId) {
   return mockFlashcardSets.filter((f) => f.libraryId === libraryId).map((f) => ({ ...f }));
 }
 
+export async function getFlashcardSetsForUser(userId) {
+  await delay(200);
+const accessibleLibraries = mockLibraries.filter(
+    (library) => String(library.ownerId) === String(userId)
+  );
+  const librariesById = new Map(accessibleLibraries.map((library) => [library.id, library]));
+
+  return mockFlashcardSets
+    .filter((set) => librariesById.has(set.libraryId))
+    .map((set) => {
+      const library = librariesById.get(set.libraryId);
+      return {
+        ...set,
+        libraryName: library.name,
+        courseCode: library.courseCode,
+      };
+    });
+}
+
+export async function getFlashcardSet(id, userId) {
+  await delay(200);
+  const set = mockFlashcardSets.find((item) => String(item.id) === String(id));
+  if (!set) return null;
+
+  const library = mockLibraries.find((item) => item.id === set.libraryId);
+  if (!library) return null;
+  const hasAccess = String(library.ownerId) === String(userId);
+  if (!hasAccess) return null;
+
+  return {
+    ...set,
+    libraryName: library.name,
+    courseCode: library.courseCode,
+  };
+}
+
+export async function deleteFlashcardSet(id) {
+  await delay(200);
+  removeWhere(mockFlashcardSets, (set) => String(set.id) === String(id));
+}
+
 /** Educator view: the members of a library. Names are placeholders for now. */
 export async function getMembers(libraryId) {
   await delay(200);

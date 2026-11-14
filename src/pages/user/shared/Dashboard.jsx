@@ -12,10 +12,13 @@ import {
   ClipboardList,
   BarChart3,
   Sparkles,
+  Layers,
+  Play,
 } from "lucide-react";
 
 import { useEffect, useState } from "react";
 import { getLibrariesForUser } from "../../data";
+import { mockFlashcardCards, mockFlashcardSets } from "../../data/mockContent";
 
 function Dashboard({ activeAdvertisement }) {
   //Retrieve the currently logged-in user's information from localStorage
@@ -45,6 +48,11 @@ useEffect(() => {
   //Identify the user's role
   const isStudent = currentUser.role === "student";
   const isEducator = currentUser.role === "educator";
+  const ownedLibrary = libraries.find((library) => library.isOwner);
+  const createFlashcardsPath = ownedLibrary
+    ? `/libraries/${ownedLibrary.id}/flashcards/create`
+    : "/libraries/create";
+  const demoFlashcardSet = mockFlashcardSets[0];
 
   return (
     <main className="dashboard-page">
@@ -102,10 +110,34 @@ useEffect(() => {
               <p>Explore and join a new library.</p>
             </Link>
 
-            <Link to="/live-match" className="dashboard-card">
+            <Link to="/live/join" className="dashboard-card">
               <Gamepad2 className="dashboard-icon" size={32} />
               <h2>Join Live Match</h2>
               <p>Participate in an educational match.</p>
+            </Link>
+
+            <Link to={createFlashcardsPath} className="dashboard-card">
+              <Layers className="dashboard-icon" size={32} />
+              <h2>Create Flashcards</h2>
+              <p>
+                {ownedLibrary
+                  ? `Create a flashcard set for ${ownedLibrary.name}.`
+                  : "Create a library to start making flashcards."}
+              </p>
+            </Link>
+
+            <Link
+              to={`/flashcards/${demoFlashcardSet.id}/study`}
+              state={{
+                title: demoFlashcardSet.title,
+                cards: mockFlashcardCards.slice(0, demoFlashcardSet.cardCount),
+                libraryId: demoFlashcardSet.libraryId,
+              }}
+              className="dashboard-card"
+            >
+              <Play className="dashboard-icon" size={32} />
+              <h2>Play Flashcards</h2>
+              <p>Start studying {demoFlashcardSet.title}.</p>
             </Link>
 
             <Link to="/summaries" className="dashboard-card ai-study-card">

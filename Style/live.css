@@ -1,0 +1,1375 @@
+/* LIVE pages — append to styles.css
+   Uses the team's current colours and sizes so the conversion script maps it later. */
+
+.live-join-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  background-color: #f4f7fb;
+}
+
+.live-join-card {
+  width: 100%;
+  max-width: 460px;
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.live-join-card h1 {
+  margin: 0 0 10px;
+  color: #1f2937;
+  font-size: 32px;
+}
+
+.live-join-card > p {
+  margin: 0 0 24px;
+  color: #6b7280;
+}
+
+.live-join-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.live-join-card label {
+  margin-top: 10px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.live-join-card input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.live-join-card input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.live-join-card input[aria-invalid="true"] {
+  border-color: #dc2626;
+}
+
+.live-join-card .live-code-input {
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: 0.4em;
+  text-align: center;
+}
+
+.live-join-card .error-message {
+  margin: 0;
+  color: #dc2626;
+  font-size: 14px;
+}
+
+
+
+.live-primary-button,
+.live-secondary-button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.live-primary-button {
+  margin-top: 18px;
+  border: none;
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+.live-primary-button:hover:not(:disabled) {
+  background-color: #1d4ed8;
+}
+
+.live-primary-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.live-secondary-button {
+  border: 1px solid #2563eb;
+  background-color: #ffffff;
+  color: #2563eb;
+}
+
+.live-secondary-button:hover {
+  background-color: #eff6ff;
+}
+
+
+
+@media (max-width: 500px) {
+  .live-join-card {
+    padding: 28px 22px;
+  }
+}
+
+/* Leave match confirmation, shown on top of the page */
+.live-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  background-color: rgba(0, 0, 0, 0.55);
+}
+
+.live-modal {
+  width: 100%;
+  max-width: 420px;
+  padding: 28px;
+  border-radius: 16px;
+  background-color: #ffffff;
+  color: #1f2937;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.live-modal h2 {
+  margin: 0 0 12px;
+  font-size: 20px;
+}
+
+.live-modal p {
+  margin: 0 0 12px;
+  color: #374151;
+}
+
+
+/* Back button above the page title */
+.live-topnav {
+  display: flex;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.live-topnav a,
+.live-topnav button {
+  padding: 0;
+  border: none;
+  background: none;
+  color: #2563eb;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.live-topnav a:hover,
+.live-topnav button:hover {
+  text-decoration: underline;
+}
+
+/* LIVE-02 Waiting Room */
+.live-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.live-center > p {
+  margin: 0;
+}
+
+.live-host {
+  margin: 0 0 20px;
+  color: #6b7280;
+}
+
+.live-host strong {
+  color: #374151;
+}
+
+.live-waiting-status {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  margin-bottom: 24px;
+  border-radius: 12px;
+  background-color: #eff6ff;
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.live-spinner {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border: 3px solid #d1d5db;
+  border-top-color: #2563eb;
+  border-radius: 50%;
+  animation: live-spin 0.9s linear infinite;
+}
+
+@keyframes live-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .live-spinner {
+    animation-duration: 3s;
+  }
+}
+
+.live-section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px;
+  color: #374151;
+  font-size: 16px;
+}
+
+.live-count {
+  padding: 2px 10px;
+  border-radius: 12px;
+  background-color: #eff6ff;
+  color: #2563eb;
+  font-size: 14px;
+}
+
+.live-player-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 260px;
+  margin: 0 0 24px;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.live-player {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  color: #1f2937;
+}
+
+.live-player-me {
+  border-color: #2563eb;
+  background-color: #eff6ff;
+}
+
+.live-player-initial {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #eff6ff;
+  color: #2563eb;
+  font-weight: 600;
+}
+
+.live-player-me .live-player-initial {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+.live-you {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.live-button-link {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+}
+
+/* Leave dialog buttons */
+.live-modal-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.live-modal-actions > button {
+  flex: 1;
+  margin-top: 0;
+}
+
+.live-danger-button {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: #dc2626;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.live-danger-button:hover:not(:disabled) {
+  background-color: #b91c1c;
+}
+
+.live-danger-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* LIVE-05 Host Lobby (title row and tag are shared with the results pages) */
+.live-host-card {
+  max-width: 760px;
+}
+
+.live-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.live-title-row h1 {
+  margin: 0;
+}
+
+.live-title-tag {
+  padding: 4px 12px;
+  border-radius: 12px;
+  background-color: #eff6ff;
+  color: #2563eb;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.live-code-display {
+  margin-bottom: 24px;
+  padding: 24px;
+  border-radius: 16px;
+  background-color: #eff6ff;
+  text-align: center;
+}
+
+.live-code-label {
+  margin: 0;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.live-code-digits {
+  margin: 4px 0 0;
+  color: #2563eb;
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.12em;
+  font-variant-numeric: tabular-nums;
+}
+
+.live-lobby-body {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.live-lobby-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.live-lobby-actions > button {
+  margin-top: 0;
+}
+
+.live-host-hint {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.live-players-panel {
+  padding: 20px;
+  border: 1px solid #d1d5db;
+  border-radius: 16px;
+}
+
+.live-player-total {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 0 0 16px;
+  color: #6b7280;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.live-player-total-number {
+  color: #2563eb;
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.live-players-panel .live-waiting-status {
+  margin-bottom: 0;
+}
+
+.live-avatar-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.live-avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #eff6ff;
+  color: #2563eb;
+  font-weight: 600;
+}
+
+.live-last-joined {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.live-last-joined strong {
+  color: #1f2937;
+}
+
+/* Text only for screen readers */
+.live-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .live-lobby-body {
+    grid-template-columns: 1fr;
+  }
+
+  .live-code-digits {
+    font-size: 42px;
+  }
+}
+
+/* LIVE-04 Leaderboards */
+
+/* Faint stars behind the results pages */
+.live-stars-page {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cg fill='%232563eb' fill-opacity='0.07'%3E%3Cpath transform='translate(20 24) scale(1.6)' d='M12 2l3 7h7l-5.5 4.5 2 7.5-6.5-4.5-6.5 4.5 2-7.5L2 9h7z'/%3E%3Cpath transform='translate(150 40) scale(0.9)' d='M12 2l3 7h7l-5.5 4.5 2 7.5-6.5-4.5-6.5 4.5 2-7.5L2 9h7z'/%3E%3Cpath transform='translate(96 130) scale(2.4)' d='M12 2l3 7h7l-5.5 4.5 2 7.5-6.5-4.5-6.5 4.5 2-7.5L2 9h7z'/%3E%3Cpath transform='translate(24 176) scale(0.7)' d='M12 2l3 7h7l-5.5 4.5 2 7.5-6.5-4.5-6.5 4.5 2-7.5L2 9h7z'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 240px 240px;
+}
+
+.live-score-display {
+  margin-bottom: 20px;
+  padding: 24px;
+  border-radius: 16px;
+  background-color: #eff6ff;
+  text-align: center;
+}
+
+.live-score-number {
+  margin: 4px 0 0;
+  color: #2563eb;
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.live-score-caption {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.live-perfect {
+  margin: 0;
+  color: #15803d;
+  font-weight: 600;
+  text-align: center;
+}
+
+.live-mistakes {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.live-mistake {
+  padding: 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+}
+
+.live-mistake p {
+  margin: 0;
+}
+
+.live-mistake-question {
+  margin-bottom: 8px;
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.live-mistake {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.live-mistake-text {
+  flex: 1;
+}
+
+.live-answer-wrong {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.live-answer-right {
+  color: #15803d;
+  font-weight: 600;
+}
+
+.live-ask-ai {
+  flex: none;
+  padding: 8px 14px;
+  border: 1px solid #2563eb;
+  border-radius: 8px;
+  color: #2563eb;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.live-ask-ai:hover {
+  background-color: #eff6ff;
+}
+
+.live-results-summary {
+  margin: 0;
+  color: #6b7280;
+}
+
+/* Podium: 2nd on the left, 1st in the middle, 3rd on the right */
+.live-podium {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 12px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.live-podium-place {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 30%;
+  max-width: 180px;
+  text-align: center;
+}
+
+.live-podium-1 {
+  order: 2;
+}
+
+.live-podium-2 {
+  order: 1;
+}
+
+.live-podium-3 {
+  order: 3;
+}
+
+.live-podium-avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #eff6ff;
+  color: #2563eb;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.live-podium-1 .live-podium-avatar {
+  width: 64px;
+  height: 64px;
+  background-color: #2563eb;
+  color: #ffffff;
+  font-size: 26px;
+}
+
+.live-podium-name {
+  max-width: 100%;
+  overflow: hidden;
+  color: #1f2937;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.live-podium-points {
+  color: #6b7280;
+  font-size: 14px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.live-podium-block {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  margin-top: 4px;
+  padding-top: 12px;
+  border-radius: 12px 12px 0 0;
+  background-color: #eff6ff;
+  color: #2563eb;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.live-podium-1 .live-podium-block {
+  height: 160px;
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+.live-podium-2 .live-podium-block {
+  height: 120px;
+}
+
+.live-podium-3 .live-podium-block {
+  height: 90px;
+}
+
+/* Places 4 and 5, under the podium */
+.live-ranking {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.live-rank-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  background-color: #ffffff;
+  color: #1f2937;
+}
+
+.live-rank-number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #eff6ff;
+  color: #2563eb;
+  font-weight: 700;
+}
+
+.live-rank-name {
+  flex: 1;
+  font-weight: 600;
+}
+
+.live-rank-score {
+  color: #374151;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.live-join-card .live-button-link {
+  margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+  .live-score-number {
+    font-size: 42px;
+  }
+
+  .live-podium {
+    gap: 8px;
+  }
+
+  .live-podium-1 .live-podium-block {
+    height: 120px;
+  }
+
+  .live-podium-2 .live-podium-block {
+    height: 90px;
+  }
+
+  .live-podium-3 .live-podium-block {
+    height: 70px;
+  }
+}
+
+/* LIVE-03 Live Question (player game screen) — fills the screen */
+.live-game-page {
+  display: flex;
+  min-height: 100vh;
+  padding: 24px;
+  background-color: #f4f7fb;
+}
+
+.live-game-card {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.live-game-card.live-center {
+  justify-content: center;
+}
+
+.live-game-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Menu */
+.live-menu {
+  position: relative;
+}
+
+.live-menu-button {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #374151;
+  font-size: 22px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.live-menu-button:hover {
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+.live-menu-list {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 10;
+  min-width: 180px;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  animation: live-fade-up 0.2s ease both;
+}
+
+.live-menu-list a {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 6px;
+  color: #dc2626;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.live-menu-list a:hover {
+  background-color: #fef2f2;
+}
+
+/* Header: menu, progress, rank, points */
+.live-game-top {
+  padding: 12px 16px;
+  border-radius: 12px;
+  background-color: #f4f7fb;
+}
+
+.live-progress {
+  flex: 1 1 160px;
+  height: 10px;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: #dbe3ef;
+}
+
+.live-progress-fill {
+  height: 100%;
+  border-radius: 8px;
+  background-color: #2563eb;
+  transition: width 0.6s ease;
+}
+
+.live-game-stats {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.live-rank,
+.live-points {
+  margin: 0;
+  color: #1f2937;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.live-points {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #2563eb;
+}
+
+.live-points-symbol {
+  color: #f59e0b;
+  font-size: 26px;
+}
+
+/* Footer: timer bar */
+.live-game-footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background-color: #f4f7fb;
+  animation: live-fade-in 0.3s ease both;
+}
+
+.live-timer-bar {
+  flex: 1;
+  height: 12px;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: #dbe3ef;
+}
+
+.live-timer-fill {
+  height: 100%;
+  border-radius: 8px;
+  background-color: #2563eb;
+  transition: width 0.25s linear, background-color 0.3s ease;
+}
+
+.live-timer-seconds {
+  min-width: 28px;
+  height: 28px; /* same height when empty, so the choices don't move */
+  line-height: 28px;
+  color: #2563eb;
+  font-size: 22px;
+  font-weight: 700;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.live-game-footer-low {
+  background-color: #fef2f2;
+  animation: live-blink 1s ease infinite; /* blinks red in the last 5 seconds */
+}
+
+.live-game-footer-low .live-timer-fill {
+  background-color: #dc2626;
+}
+
+.live-game-footer-low .live-timer-seconds {
+  color: #dc2626;
+}
+
+/* Steps: get ready, read */
+.live-stage {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  animation: live-fade-up 0.4s ease both;
+}
+
+.live-countdown-number {
+  margin: 0;
+  color: #2563eb;
+  font-size: min(45vh, 35vw); /* fills most of the screen */
+  font-weight: 700;
+  line-height: 1;
+  animation: live-pop 0.5s ease both;
+}
+
+.live-countdown-word {
+  margin: 0;
+  color: #2563eb;
+  font-size: min(28vh, 20vw); /* fills most of the screen */
+  font-weight: 800;
+  line-height: 1;
+  animation: live-pop 0.5s ease both;
+}
+
+.live-countdown-go {
+  color: #16a34a;
+}
+
+.live-question-big {
+  max-width: 1000px;
+  margin: 0;
+  color: #1f2937;
+  font-size: clamp(30px, 5vw, 64px);
+  line-height: 1.3;
+}
+
+/* Step: answer — the choices fill the rest of the screen */
+.live-question-small {
+  margin: 0;
+  color: #1f2937;
+  font-size: clamp(24px, 3vw, 40px);
+  line-height: 1.4;
+  animation: live-fade-up 0.4s ease both;
+}
+
+.live-options {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  flex: 1;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: minmax(72px, 1fr);
+  gap: 16px;
+}
+
+.live-option {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 16px;
+  border: 2px solid #d1d5db;
+  border-radius: 14px;
+  background-color: #ffffff;
+  color: #1f2937;
+  font-weight: 700;
+  line-height: 1.15;
+  container-type: size; /* lets the text size itself from the box (cqw = % of box width, cqh = % of box height) */
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease, opacity 0.3s ease, transform 0.15s ease;
+  animation: live-fade-up 0.4s ease both;
+}
+
+.live-option:enabled:hover:not(.live-option-chosen) { /* buttons only, not the host's boxes */
+  border-color: #2563eb;
+  transform: translateY(-2px);
+}
+
+.live-option:disabled {
+  cursor: default;
+}
+
+.live-option:disabled:not(.live-option-mine) {
+  opacity: 0.5;
+}
+
+/* Reveal: the text fades out, the number of players fades in */
+.live-option {
+  position: relative;
+}
+
+.live-option-text {
+  font-size: min(42cqh, 13cqw);
+  overflow-wrap: anywhere;
+  transition: opacity 0.4s ease;
+}
+
+.live-option-text-long {
+  font-size: min(26cqh, 8cqw);
+}
+
+.live-option-revealed .live-option-text {
+  opacity: 0;
+}
+
+.live-option-count {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #374151;
+  font-size: min(70cqh, 30cqw);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  animation: live-fade-in 0.5s ease 0.3s both;
+}
+
+/* The player's pick is yellow while answering */
+.live-option-chosen {
+  border-color: #eab308;
+  background-color: #fef9c3;
+  color: #854d0e;
+}
+
+/* At the reveal: the right answer is solid green, a wrong pick solid red */
+.live-option-correct,
+.live-option:disabled.live-option-correct {
+  border-color: #16a34a;
+  background-color: #16a34a;
+  opacity: 1;
+  animation: live-pop-small 0.4s ease both;
+}
+
+.live-option-wrong,
+.live-option:disabled.live-option-wrong {
+  border-color: #dc2626;
+  background-color: #dc2626;
+  opacity: 1;
+  animation: live-shake 0.5s ease both;
+}
+
+.live-option-correct .live-option-count,
+.live-option-wrong .live-option-count {
+  color: #ffffff;
+}
+
+/* ...and the player's own pick keeps a yellow ring, so they can find it */
+.live-option-mine {
+  box-shadow: 0 0 0 5px #facc15;
+}
+
+/* Confetti */
+.live-confetti {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.live-confetti-piece {
+  position: absolute;
+  top: -20px;
+  width: 10px;
+  height: 16px;
+  border-radius: 2px;
+  opacity: 0;
+  animation-name: live-confetti-fall;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+/* Animations */
+@keyframes live-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes live-fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes live-pop-small {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+  100% { transform: scale(1); }
+}
+
+@keyframes live-shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+
+@keyframes live-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
+@keyframes live-confetti-fall {
+  0% { opacity: 1; transform: translateY(0) rotate(0deg); }
+  100% { opacity: 0; transform: translateY(105vh) rotate(720deg); }
+}
+
+@keyframes live-pop {
+  from { opacity: 0; transform: scale(1.4); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .live-game-page * {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .live-confetti {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .live-game-page {
+    padding: 12px;
+  }
+
+  .live-game-card {
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .live-rank,
+  .live-points {
+    font-size: 24px;
+  }
+
+  .live-options {
+    grid-template-columns: 1fr;
+    grid-auto-rows: minmax(56px, 1fr);
+    gap: 10px;
+  }
+
+  .live-option {
+    padding: 6px 12px;
+  }
+
+
+}
+
+/* LIVE-06 Host Question (host game screen) — reuses the LIVE-03 styles */
+.live-host-match-title {
+  flex: 0 1 auto;
+  max-width: 40%;
+  margin: 0;
+  overflow: hidden;
+  color: #374151;
+  font-size: 18px;
+  font-weight: 700;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.live-host-keys {
+  margin: 0;
+  color: #6b7280;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.live-host-keys kbd {
+  padding: 2px 6px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  background-color: #ffffff;
+  color: #374151;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.live-question-host-big {
+  max-width: 1100px;
+  font-size: clamp(36px, 6vw, 88px);
+}
+
+/* Host leaderboard: Details table */
+.live-details-button {
+  margin-top: 16px;
+}
+
+.live-stats {
+  margin-top: 16px;
+}
+
+.live-stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.live-stats-table th,
+.live-stats-table td {
+  padding: 10px 8px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: center;
+}
+
+.live-stats-table th {
+  color: #6b7280;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.live-stats-table th:nth-child(2),
+.live-stats-table .live-stats-question {
+  text-align: left;
+}
+
+.live-stats-row {
+  cursor: default;
+}
+
+.live-stats-row:hover,
+.live-stats-row:focus {
+  outline: none;
+  background-color: #eff6ff;
+}
+
+.live-stats-row:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: -2px;
+}
+
+.live-stats-question {
+  position: relative;
+  max-width: 0; /* lets the text shorten with "…" instead of widening the table */
+  width: 100%;
+}
+
+.live-stats-question-text {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.live-stats-right {
+  color: #15803d;
+  font-weight: 700;
+}
+
+.live-stats-wrong {
+  color: #dc2626;
+  font-weight: 700;
+}
+
+/* The popup: hidden until the row is hovered or focused */
+.live-stats-popup {
+  display: none;
+  position: absolute;
+  top: calc(100% - 4px);
+  left: 0;
+  z-index: 10;
+  width: min(420px, 80vw);
+  padding: 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  white-space: normal;
+  pointer-events: none; /* it only shows information: taps and clicks go through to the rows underneath */
+  animation: live-fade-up 0.2s ease both;
+}
+
+.live-stats-row:hover .live-stats-popup,
+.live-stats-row:focus-within .live-stats-popup {
+  display: block;
+}
+
+.live-stats-popup-question {
+  margin: 0 0 10px;
+  color: #1f2937;
+  font-weight: 700;
+}
+
+.live-stats-choices {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.live-stats-choice {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background-color: #f4f7fb;
+  color: #374151;
+}
+
+.live-stats-choice-right {
+  background-color: #dcfce7;
+  color: #15803d;
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .live-stats-table {
+    font-size: 13px;
+  }
+
+  .live-stats-table th,
+  .live-stats-table td {
+    padding: 8px 4px;
+  }
+}
