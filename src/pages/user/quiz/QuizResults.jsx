@@ -162,7 +162,7 @@ function getCardClass(question, questionIndex) {
           <button
             type="button"
             className="btn btn-outline-secondary"
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/libraries")}
           >
             Back to Library
           </button>
