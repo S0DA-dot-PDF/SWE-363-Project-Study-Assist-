@@ -115,8 +115,6 @@ function App() {
               <QuizResults />
             </ProtectedRoute>
              }
-              </ProtectedRoute>
-          }
         />
         <Route path="/libraries" element={<MyLibraries />} />
         <Route path="/libraries/join" element={<JoinLibrary />} />
