@@ -82,7 +82,7 @@ export default function UserManagement() {
 
         return (
           (!q ||
-            [u.name, u.email, u.kfupmId].some((x) =>
+            [u.name, u.email, u.id].some((x) =>
               String(x ?? "").toLowerCase().includes(q)
             )) &&
           (roleFilter === "all" || u.role === roleFilter) &&
@@ -210,7 +210,7 @@ export default function UserManagement() {
 
   return (
     <main className="um-page">
-      <Link className="um-back" to="/admin">
+      <Link className="um-back" to="/admin-dashboard">
         ← Admin Dashboard
       </Link>
 
@@ -343,7 +343,7 @@ export default function UserManagement() {
                       </td>
 
                       <td>{u.email}</td>
-                      <td>{u.kfupmId || "—"}</td>
+                      <td>{u.id || "—"}</td>
                       <td>{u.role}</td>
 
                       <td>
@@ -405,7 +405,7 @@ export default function UserManagement() {
               <dd>{selected.email}</dd>
 
               <dt>KFUPM ID</dt>
-              <dd>{selected.kfupmId || "Not provided"}</dd>
+              <dd>{selected.id || "Not provided"}</dd>
 
               <dt>Role</dt>
               <dd>{selected.role}</dd>
