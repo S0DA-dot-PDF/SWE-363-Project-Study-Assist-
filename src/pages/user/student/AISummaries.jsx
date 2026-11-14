@@ -12,6 +12,7 @@ const ROUTES = {
   myLibraries: "/libraries",
   library: (id) => `/libraries/${id}`,
   quizResults: "/quizzes/results",
+  dashboard: "/dashboard",
 };
 
 const delay = (ms) =>
@@ -142,7 +143,7 @@ export default function AISummaries() {
     mode === "summary" && libraryId
       ? ROUTES.library(libraryId)
       : mode === "explanation"
-        ? ROUTES.quizResults
+        ? explanationData?.returnTo || (explanationData?.resultsState ? ROUTES.quizResults : ROUTES.dashboard)
         : ROUTES.myLibraries;
 
   if (status === "loading") {
@@ -208,7 +209,11 @@ export default function AISummaries() {
       >
         ← {mode === "summary"
           ? "Back to Library"
-          : "Back to Quiz Results"}
+          : explanationData?.returnTo?.startsWith("/live/")
+            ? "Back to Live Results"
+            : explanationData?.resultsState
+              ? "Back to Quiz Results"
+              : "Back to Dashboard"}
       </Link>
 
       <header className="ai-header">

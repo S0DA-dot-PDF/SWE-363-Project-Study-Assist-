@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { getCurrentUser, getPlayerResult } from './liveMatches';
 
 /*
@@ -14,14 +14,12 @@ import { getCurrentUser, getPlayerResult } from './liveMatches';
 const ROUTES = {
   joinMatch: '/live/join', // LIVE-01
   dashboard: '/dashboard',
-  askAi: '/ai-help', // TODO: the AI help page (the question and both answers are passed in the link's state)
+  askAi: '/summaries',
 };
 
-// One page back; if there is no previous page in the app, go to the dashboard
 function useGoBack() {
   const navigate = useNavigate();
-  const location = useLocation();
-  return () => (location.key !== 'default' ? navigate(-1) : navigate(ROUTES.dashboard));
+  return () => navigate(ROUTES.dashboard);
 }
 
 const MESSAGES = {
@@ -127,7 +125,17 @@ export default function PlayerLeaderboard() {
                     {mistake.correctAnswer}
                   </p>
                 </div>
-                <Link to={ROUTES.askAi} state={mistake} className="live-ask-ai">
+                <Link
+                  to={ROUTES.askAi}
+                  state={{
+                    mode: 'explanation',
+                    question: mistake.text,
+                    selectedAnswer: mistake.yourAnswer ?? 'No answer',
+                    correctAnswer: mistake.correctAnswer,
+                    returnTo: `/live/${matchId}/results`,
+                  }}
+                  className="live-ask-ai"
+                >
                   Ask AI
                 </Link>
               </li>
