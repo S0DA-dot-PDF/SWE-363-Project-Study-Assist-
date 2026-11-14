@@ -17,6 +17,10 @@ import LibraryDetails from "./pages/user/library/LibraryDetails";
 import UploadMaterial from "./pages/user/library/UploadMaterial";
 import CreateMenu from "./pages/user/library/CreateMenu";
 import AISummaries from "./pages/user/student/AISummaries";
+import Profile from "./pages/user/shared/Profile";
+import Comments from "./pages/user/shared/Comments";
+import ReportProblem from "./pages/user/shared/ReportProblem";
+import AdminDashboard from "./pages/admin/AdminDashboard";
 
 function ProtectedRoute({ children }) {
   const currentUser = localStorage.getItem("currentUser");
@@ -79,6 +83,43 @@ function App() {
         <Route path="/libraries/:id/upload" element={<UploadMaterial />} />
         <Route path="/libraries/:id/create" element={<CreateMenu />} />
         <Route path="/summaries" element={<AISummaries />} />
+
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/comments"
+          element={
+            <ProtectedRoute>
+              <Comments />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+        path="/report-problem"
+        element={
+          <ProtectedRoute>
+            <ReportProblem />
+          </ProtectedRoute>
+        }
+        />
+
+        <Route
+        path="/admin-dashboard"
+        element={
+          <ProtectedRoute>
+            <AdminDashboard />
+          </ProtectedRoute>
+        }
+        />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

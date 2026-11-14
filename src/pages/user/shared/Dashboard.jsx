@@ -1,4 +1,5 @@
 //SHR-01
+
 import { Link } from "react-router-dom";
 import {
   BookOpen,
@@ -7,13 +8,17 @@ import {
   Plus,
   User,
   CircleAlert,
+  MessageCircle,
+  ClipboardList,
+  BarChart3,
+  Sparkles,
 } from "lucide-react";
 
 import { useEffect, useState } from "react";
 import { getLibrariesForUser } from "../../data";
 
 function Dashboard() {
-    //Retrieve the currently logged-in user's information from localStorage
+  //Retrieve the currently logged-in user's information from localStorage
   const currentUser = JSON.parse(
   localStorage.getItem("currentUser")
 );
@@ -37,57 +42,105 @@ useEffect(() => {
 }, [currentUser?.id]);
 
 
+  //Identify the user's role
+  const isStudent = currentUser.role === "student";
+  const isEducator = currentUser.role === "educator";
+
   return (
     <main className="dashboard-page">
       <section className="dashboard-header">
         <div>
-          <p className="welcome-text">Welcome back,</p>
+          <p className="welcome-text">
+            Welcome back,
+          </p>
+
           <h1>{currentUser.name}</h1>
         </div>
 
         <Link to="/profile" className="profile-link">
-        <User size={18} />
-        View Profile
+          <User size={18} />
+          View Profile
         </Link>
       </section>
 
       <section className="dashboard-shortcuts">
         <Link to="/libraries" className="dashboard-card">
-        <BookOpen className="dashboard-icon" size={32} />
-        <h2>My Libraries</h2>
-        <p>View your educational libraries.</p>
-        </Link>
-
-        <Link to="/libraries/join" className="dashboard-card">
-        <Library className="dashboard-icon" size={32} />
-        <h2>Join Library</h2>
-        <p>Explore and join a new library.</p>
-        </Link>
-
-        <Link to="/live-match" className="dashboard-card">
-        <Gamepad2 className="dashboard-icon" size={32} />
-        <h2>Join Live Match</h2>
-        <p>Participate in an educational match.</p>
+          <BookOpen className="dashboard-icon" size={32} />
+          <h2>My Libraries</h2>
+          <p>View your educational libraries.</p>
         </Link>
 
         <Link to="/libraries/create" className="dashboard-card">
-        <Plus className="dashboard-icon" size={32} />
-        <h2>Create Library</h2>
-        <p>Create your own study library.</p>
+          <Plus className="dashboard-icon" size={32} />
+          <h2>Create Library</h2>
+          <p>Create your own study library.</p>
         </Link>
 
+        {isStudent && (
+          <>
+            <Link to="/libraries/join" className="dashboard-card">
+              <Library className="dashboard-icon" size={32} />
+              <h2>Join Library</h2>
+              <p>Explore and join a new library.</p>
+            </Link>
+
+            <Link to="/live-match" className="dashboard-card">
+              <Gamepad2 className="dashboard-icon" size={32} />
+              <h2>Join Live Match</h2>
+              <p>Participate in an educational match.</p>
+            </Link>
+
+            <Link to="/summaries" className="dashboard-card ai-study-card">
+              <Sparkles className="dashboard-icon" size={32} />
+
+              <h2>AI Study Help</h2>
+
+              <p>
+                Generate AI summaries for educational materials and explanations
+                for incorrect answers.
+              </p>
+            </Link>
+          </>
+        )}
+
+        {isEducator && (
+          <>
+            <Link to="/create-match" className="dashboard-card">
+              <Gamepad2 className="dashboard-icon" size={32} />
+              <h2>Create Live Match</h2>
+              <p>Host an educational live match.</p>
+            </Link>
+
+            <Link to="/quizzes/create" className="dashboard-card">
+              <ClipboardList className="dashboard-icon" size={32} />
+              <h2>My Quizzes</h2>
+              <p>Create and manage your quizzes.</p>
+            </Link>
+          </>
+        )}
       </section>
 
       <section className="dashboard-summary">
         {libraries.length === 0 ? (
           <div className="empty-dashboard">
-            <h2>You do not have any libraries yet.</h2>
-            <p>Join a library or create one to start learning.</p>
+            <h2>
+              {isStudent
+                ? "You do not have any libraries yet."
+                : "You have not created any libraries yet."}
+            </h2>
+
+            <p>
+              {isStudent
+                ? "Join a library or create one to start learning."
+                : "Create a library to start teaching students."}
+            </p>
 
             <div className="dashboard-actions">
-              <Link to="/libraries/join" className="primary-button">
-                Join a Library
-              </Link>
+              {isStudent && (
+                <Link to="/libraries/join" className="primary-button">
+                  Join a Library
+                </Link>
+              )}
 
               <Link to="/libraries/create" className="secondary-button">
                 Create a Library
@@ -101,27 +154,52 @@ useEffect(() => {
         )}
       </section>
 
-      <section className="student-summary">
-        <div className="summary-box">
-          <h3>Total Points</h3>
-          <p>{currentUser.points}</p>
-        </div>
+      {isStudent && (
+        <section className="student-summary">
+          <div className="summary-box">
+            <h3>Total Points</h3>
+            <p>{currentUser.points || 0}</p>
+          </div>
 
-        <div className="summary-box">
-          <h3>Recent Scores</h3>
-          <p>No scores yet</p>
-        </div>
+          <div className="summary-box">
+            <h3>Recent Scores</h3>
+            <p>No scores yet</p>
+          </div>
 
-        <div className="summary-box">
-          <h3>Recent Comments</h3>
-          <p>No comments yet</p>
-        </div>
-      </section>
+          <Link to="/comments" className="summary-box summary-link">
+            <MessageCircle className="summary-icon" size={28} />
+            <h3>Recent Comments</h3>
+            <p>No comments yet</p>
+          </Link>
+        </section>
+      )}
+
+      {isEducator && (
+        <section className="student-summary">
+          <Link to="/quizzes/generated" className="summary-box summary-link">
+            <ClipboardList className="summary-icon" size={28} />
+            <h3>Recent Quizzes</h3>
+            <p>No quizzes yet</p>
+          </Link>
+
+          <Link to="/comments" className="summary-box summary-link">
+            <MessageCircle className="summary-icon" size={28} />
+            <h3>New Comments</h3>
+            <p>Review student questions</p>
+          </Link>
+
+          <Link to="/quizzes/results" className="summary-box summary-link">
+            <BarChart3 className="summary-icon" size={28} />
+            <h3>Student Results</h3>
+            <p>View quiz performance</p>
+          </Link>
+        </section>
+      )}
 
       <div className="report-problem-container">
         <Link to="/report-problem" className="report-problem-button">
-        <CircleAlert size={18} />
-        Report a Problem
+          <CircleAlert size={18} />
+          Report a Problem
         </Link>
       </div>
     </main>
