@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {useNavigate} from "react-router-dom";
+import {useNavigate,  Link} from "react-router-dom";
 function CreateQuiz() {
   const navigate = useNavigate();
   const [quizTitle, setQuizTitle] = useState("");
@@ -67,8 +67,16 @@ setTimeout(() => {
 
   return (
     <main className="container py-5">
-      <h1>Create Quiz with AI</h1>
-      <p>Upload your course materials to generate MCQ questions.</p>
+      <div className="d-flex justify-content-between align-items-start mb-4">
+        <div>
+          <h1>Create Quiz with AI</h1>
+          <p>Upload your course materials to generate MCQ questions.</p>
+        </div>
+
+        <Link to="/dashboard" className="btn btn-outline-primary">
+          Home
+        </Link>
+      </div>
 
       <form onSubmit={handleSubmit} className="bg-white border rounded-4 p-4 mx-auto quiz-form">
         <div className="mb-3">

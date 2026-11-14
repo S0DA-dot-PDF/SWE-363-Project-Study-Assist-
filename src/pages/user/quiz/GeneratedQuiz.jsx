@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 const generatedQuestions = [
   {
     id: "1",
@@ -79,6 +79,9 @@ useEffect(() => {
           >
             Edit Quiz
           </button>
+          <Link to="/dashboard" className="btn btn-outline-primary">
+                    Home
+          </Link>
         </div>
         <p className="mb-2">
           Time remaining: {timeRemaining} seconds

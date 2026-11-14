@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocation, useNavigate} from "react-router-dom";
+import { useLocation, useNavigate, Link} from "react-router-dom";
 
 
 
@@ -83,12 +83,17 @@ function publishQuiz() {
 }
   return (
     <main className="container py-5">
-      <div className="quiz-form">
-        <h1>Question Editor</h1>
-        <p>Edit and review the AI-generated questions.</p>
-        <p>
-          Questions: {editableQuestions.length}
-        </p>
+      <div className="d-flex justify-content-between align-items-start mb-4">
+        <div>
+          <h1>Question Editor</h1>
+          <p>Edit and review the AI-generated questions.</p>
+          <p>Questions: {editableQuestions.length}</p>
+        </div>
+
+        <Link to="/dashboard" className="btn btn-outline-primary">
+          Home
+        </Link>
+      </div>
         {editableQuestions.map((question, questionIndex) => (
           <div key={question.id} className="review-card">
             <label htmlFor={`question-${question.id}`}>

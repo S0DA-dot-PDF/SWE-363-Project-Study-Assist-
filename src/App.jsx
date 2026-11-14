@@ -44,6 +44,22 @@ function EducatorRoute({ children }) {
   return children;
 }
 
+function AdminRoute({ children }) {
+  const storedUser = localStorage.getItem("currentUser");
+
+  if (!storedUser) {
+    return <Navigate to="/login" replace />;
+  }
+
+  const currentUser = JSON.parse(storedUser);
+
+  if (currentUser.role !== "admin") {
+    return <Navigate to="/dashboard" replace />;
+  }
+
+  return children;
+}
+
 function App() {
   return (
     <BrowserRouter>
@@ -110,9 +126,8 @@ function App() {
        />
 
        <Route
-         path="/admin/supportTickets"
-         element={<ProtectedRoute><SupportTickets /></ProtectedRoute>}
-       />
+         path="/admin/tickets"
+         element={<AdminRoute> <SupportTickets /> </AdminRoute>} />
 
        <Route
          path="/report-problem"
@@ -121,7 +136,7 @@ function App() {
 
        <Route
          path="/admin-dashboard"
-         element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>}
+         element={<AdminRoute><AdminDashboard /></AdminRoute>}
        />
 
         <Route path="*" element={<NotFound />} />
