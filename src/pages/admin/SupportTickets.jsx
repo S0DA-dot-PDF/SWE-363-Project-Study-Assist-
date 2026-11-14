@@ -66,9 +66,7 @@ function escalateTicket(ticketId) {
               ? "Sent to Developer"
               : "Send to Developer"}
           </button>
-          <Link to="/comments" className="btn btn-primary">
-            Reply
-          </Link>
+
           <button type="button" className="btn btn-outline-danger btn-sm" onClick={() => deleteTicket(ticket.id)}>
             Delete Ticket
           </button>
