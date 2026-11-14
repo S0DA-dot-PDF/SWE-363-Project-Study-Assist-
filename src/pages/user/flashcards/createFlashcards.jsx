@@ -151,7 +151,15 @@ export default function CreateFlashcards() {
 
     // FC-02 shows the generating screen; it receives the choices from this form
     navigate(ROUTES.generating(library.id), {
-      state: { title: title.trim(), cardCount, difficulty, fileNames: files.map((file) => file.name) },
+      state: {
+        title: title.trim(),
+        cardCount,
+        difficulty,
+        fileNames: files.map((file) => file.name),
+        libraryId: library.id,
+        libraryName: library.name,
+        courseCode: library.courseCode,
+      },
     });
   }
 
