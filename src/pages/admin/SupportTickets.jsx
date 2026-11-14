@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, Link} from "react-router-dom";
 function SupportTickets() {
     const navigate = useNavigate();
   const [tickets, setTickets] = useState([{
@@ -36,8 +36,16 @@ function escalateTicket(ticketId) {
 
   return (
     <main className="container py-5">
-      <h1>Support Tickets</h1>
-      <p>Review and manage issues submitted by users.</p>
+    <div className="d-flex justify-content-between align-items-start mb-4">
+          <div>
+            <h1>Support Tickets</h1>
+            <p>Review and manage issues submitted by users.</p>
+          </div>
+
+          <Link to="/admin-dashboard" className="btn btn-outline-primary">
+            Back to Admin Dashboard
+          </Link>
+        </div>
       {tickets.length === 0 && <p className="alert alert-info">
           No tickets need to be processed. </p>}
       {tickets.map((ticket) => (
@@ -58,8 +66,8 @@ function escalateTicket(ticketId) {
               ? "Sent to Developer"
               : "Send to Developer"}
           </button>
-          <button type="button" className="btn btn-primary" onClick={()=> navigate("/user/chat")}>
-              Chat with user
+          <button type="button" className="btn btn-primary" onClick={()=> navigate("/comments")}>
+              Reply
           </button>
           <button type="button" className="btn btn-outline-danger btn-sm" onClick={() => deleteTicket(ticket.id)}>
             Delete Ticket
