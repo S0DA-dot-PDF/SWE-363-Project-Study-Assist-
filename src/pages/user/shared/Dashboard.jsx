@@ -65,7 +65,7 @@ function Dashboard() {
               <p>Explore and join a new library.</p>
             </Link>
 
-            <Link to="/live-match" className="dashboard-card">
+            <Link to="/live/join" className="dashboard-card">
               <Gamepad2 className="dashboard-icon" size={32} />
               <h2>Join Live Match</h2>
               <p>Participate in an educational match.</p>

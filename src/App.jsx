@@ -14,6 +14,13 @@ import Profile from "./pages/user/shared/Profile";
 import Comments from "./pages/user/shared/Comments";
 import ReportProblem from "./pages/user/shared/ReportProblem";
 import AdminDashboard from "./pages/admin/AdminDashboard";
+import JoinMatch from "./pages/user/live/joinMatch";
+import WaitingRoom from "./pages/user/live/waitingRoom";
+import LiveQuestion from "./pages/user/live/liveQuestion";
+import PlayerLeaderboard from "./pages/user/live/playerLeaderboard";
+import HostLobby from "./pages/user/live/hostLobby";
+import HostQuestion from "./pages/user/live/hostQuestion";
+import HostLeaderboard from "./pages/user/live/hostLeaderboard";
 
 function ProtectedRoute({ children }) {
   const currentUser = localStorage.getItem("currentUser");
@@ -43,6 +50,21 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/create-match"
+          element={
+            <ProtectedRoute>
+              <Navigate to="/live/m-2001/host" replace />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/live/join" element={<ProtectedRoute><JoinMatch /></ProtectedRoute>} />
+        <Route path="/live/:matchId/waiting" element={<ProtectedRoute><WaitingRoom /></ProtectedRoute>} />
+        <Route path="/live/:matchId/play" element={<ProtectedRoute><LiveQuestion /></ProtectedRoute>} />
+        <Route path="/live/:matchId/results" element={<ProtectedRoute><PlayerLeaderboard /></ProtectedRoute>} />
+        <Route path="/live/:matchId/host" element={<ProtectedRoute><HostLobby /></ProtectedRoute>} />
+        <Route path="/live/:matchId/host/play" element={<ProtectedRoute><HostQuestion /></ProtectedRoute>} />
+        <Route path="/live/:matchId/host/results" element={<ProtectedRoute><HostLeaderboard /></ProtectedRoute>} />
         <Route
           path="/quizzes/create"
           element={
