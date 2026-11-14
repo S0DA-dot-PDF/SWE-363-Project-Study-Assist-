@@ -224,7 +224,8 @@ const handleReply = (commentId) => {
                 )}
 
                 <div className="comment-actions">
-                    {currentUser.role === "educator" && (
+                    {(currentUser.role === "educator" ||
+                      currentUser.role === "admin") && (
                         <>
                         {!comment.reply && (
                         <form
