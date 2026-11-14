@@ -34,6 +34,11 @@ import HostLeaderboard from "./pages/user/live/hostLeaderboard";
 import UserManagement from "./pages/admin/UserManagement";
 import MyQuizzes from "./pages/user/student/MyQuizzes";
 import AdvertisementManagement from "./pages/admin/AdvertisementManagement";
+import CreateFlashcards from "./pages/user/flashcards/createFlashcards";
+import GeneratingFlashcards from "./pages/user/flashcards/generatingFlashcards";
+import FlashcardSetDetails from "./pages/user/flashcards/flashcardSetDetails";
+import StudyFlashcards from "./pages/user/flashcards/studyFlashcards";
+import MyFlashcards from "./pages/user/student/MyFlashcards";
 
 function ProtectedRoute({ children }) {
   const currentUser = localStorage.getItem("currentUser");
@@ -145,6 +150,11 @@ function App() {
         <Route path="/libraries/:id/upload" element={<UploadMaterial />} />
         <Route path="/libraries/:id/create" element={<CreateMenu />} />
         <Route path="/summaries" element={<AISummaries />} />
+        <Route path="/libraries/:id/flashcards/create" element={<ProtectedRoute><CreateFlashcards /></ProtectedRoute>} />
+        <Route path="/libraries/:id/flashcards/generating" element={<ProtectedRoute><GeneratingFlashcards /></ProtectedRoute>} />
+        <Route path="/flashcards/:id/study" element={<ProtectedRoute><StudyFlashcards /></ProtectedRoute>} />
+        <Route path="/flashcards/:id" element={<ProtectedRoute><FlashcardSetDetails /></ProtectedRoute>} />
+        <Route path="/my-flashcards" element={<ProtectedRoute><MyFlashcards /></ProtectedRoute>} />
 
        <Route
          path="/quizzes/editor"

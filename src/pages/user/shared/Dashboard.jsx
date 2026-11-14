@@ -12,6 +12,8 @@ import {
   ClipboardList,
   BarChart3,
   Sparkles,
+  Layers,
+  Play,
 } from "lucide-react";
 
 import { useEffect, useState } from "react";
@@ -45,6 +47,10 @@ useEffect(() => {
   //Identify the user's role
   const isStudent = currentUser.role === "student";
   const isEducator = currentUser.role === "educator";
+  const ownedLibrary = libraries.find((library) => library.isOwner);
+  const createFlashcardsPath = ownedLibrary
+    ? `/libraries/${ownedLibrary.id}/flashcards/create`
+    : "/libraries/create";
 
   return (
     <main className="dashboard-page">
@@ -106,6 +112,22 @@ useEffect(() => {
               <Gamepad2 className="dashboard-icon" size={32} />
               <h2>Join Live Match</h2>
               <p>Participate in an educational match.</p>
+            </Link>
+
+            <Link to={createFlashcardsPath} className="dashboard-card">
+              <Layers className="dashboard-icon" size={32} />
+              <h2>Create Flashcards</h2>
+              <p>
+                {ownedLibrary
+                  ? `Create a flashcard set for ${ownedLibrary.name}.`
+                  : "Create a library to start making flashcards."}
+              </p>
+            </Link>
+
+            <Link to="/my-flashcards" className="dashboard-card">
+              <Play className="dashboard-icon" size={32} />
+              <h2>Play Flashcards</h2>
+              <p>Study flashcard sets from your libraries.</p>
             </Link>
 
             <Link to="/summaries" className="dashboard-card ai-study-card">
