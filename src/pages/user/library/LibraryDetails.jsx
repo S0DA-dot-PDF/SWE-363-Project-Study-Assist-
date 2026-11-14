@@ -23,7 +23,7 @@ const ROUTES = {
   quiz: (id) => `/quizzes/${id}`,                   // QZ-05
   flashcards: (id) => `/flashcards/${id}`,          // FC-03
   results: (id) => `/quizzes/${id}/results`,        // EDU-02
-  summarise: (materialId) => `/summaries?material=${materialId}`, // STU-01
+  summarise: (libraryId, materialId) => `/summaries?library=${libraryId}&material=${materialId}`, // STU-01
 };
 
 const EMPTY_TEXT = {
@@ -452,7 +452,7 @@ export default function LibraryDetails() {
                             </button>
                           </>
                         ) : (
-                          <Link to={ROUTES.summarise(m.id)} className="primary-button det-small">
+                          <Link to={ROUTES.summarise(library.id, m.id)} className="primary-button det-small">
                             Summarise
                           </Link>
                         )}

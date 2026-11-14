@@ -16,6 +16,7 @@ import CreateLibrary from "./pages/user/library/CreateLibrary";
 import LibraryDetails from "./pages/user/library/LibraryDetails";
 import UploadMaterial from "./pages/user/library/UploadMaterial";
 import CreateMenu from "./pages/user/library/CreateMenu";
+import AISummaries from "./pages/user/student/AISummaries";
 
 function ProtectedRoute({ children }) {
   const currentUser = localStorage.getItem("currentUser");
@@ -77,6 +78,7 @@ function App() {
         <Route path="/libraries/:id" element={<LibraryDetails />} />
         <Route path="/libraries/:id/upload" element={<UploadMaterial />} />
         <Route path="/libraries/:id/create" element={<CreateMenu />} />
+        <Route path="/summaries" element={<AISummaries />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
