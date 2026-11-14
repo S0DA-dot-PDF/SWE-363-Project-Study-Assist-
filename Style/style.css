@@ -2852,3 +2852,50 @@ body {
   }
 }
 
+/* Dashboard library cards */
+
+.dashboard-library-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 24px;
+  text-align: left;
+}
+
+.dashboard-library-card {
+  display: block;
+  padding: 20px;
+  background-color: #f4f7fb;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #1f2937;
+  transition: transform 0.2s;
+}
+
+.dashboard-library-card:hover {
+  transform: translateY(-3px);
+}
+
+.dashboard-library-card h3 {
+  margin: 0 0 10px;
+  color: #2563eb;
+}
+
+.dashboard-library-card p {
+  margin: 0 0 12px;
+  color: #6b7280;
+}
+
+.dashboard-library-card span {
+  font-size: 13px;
+  font-weight: 600;
+  color: #2563eb;
+}
+
+@media (max-width: 600px) {
+  .dashboard-library-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

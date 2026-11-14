@@ -156,6 +156,23 @@ useEffect(() => {
         ) : (
           <div>
             <h2>Your Libraries</h2>
+                <div className="dashboard-library-grid">
+                {libraries.map((library) => (
+                  <Link
+                    key={library.id}
+                    to={`/libraries/${library.id}`}
+                    className="dashboard-library-card"
+                  >
+                    <h3>{library.name}</h3>
+
+                    <p>{library.courseCode}</p>
+
+                    <span>
+                      {library.isOwner ? "Mine" : "Joined"}
+                    </span>
+                  </Link>
+                ))}
+              </div>
           </div>
         )}
       </section>
