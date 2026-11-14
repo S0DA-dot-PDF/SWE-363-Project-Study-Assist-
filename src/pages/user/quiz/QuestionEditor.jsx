@@ -150,7 +150,6 @@ function publishQuiz() {
      <button type="button" className="btn btn-primary" onClick={publishQuiz}>
              Publish Quiz
            </button>
-      </div>
     </main>
   );
 }

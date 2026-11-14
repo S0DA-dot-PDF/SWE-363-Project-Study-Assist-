@@ -14,7 +14,7 @@ import {
   Sparkles,
 } from "lucide-react";
 
-function Dashboard() {
+function Dashboard({ activeAdvertisement }) {
   //Retrieve the currently logged-in user's information from localStorage
   const currentUser = JSON.parse(
     localStorage.getItem("currentUser")
@@ -43,7 +43,15 @@ function Dashboard() {
           View Profile
         </Link>
       </section>
-
+{activeAdvertisement && (
+        <section className="dashboard-ad">
+          {activeAdvertisement.type.startsWith("image/") ? (
+            <img src={activeAdvertisement.url} alt="Advertisement" />
+          ) : (
+            <video src={activeAdvertisement.url} controls />
+          )}
+        </section>
+      )}
       <section className="dashboard-shortcuts">
         <Link to="/libraries" className="dashboard-card">
           <BookOpen className="dashboard-icon" size={32} />
@@ -182,6 +190,7 @@ function Dashboard() {
           Report a Problem
         </Link>
       </div>
+
     </main>
   );
 }

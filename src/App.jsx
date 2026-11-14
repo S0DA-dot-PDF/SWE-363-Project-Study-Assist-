@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-
+import { useState } from "react";
 import Landing from "./pages/public/Landing";
 import Login from "./pages/public/Login";
 import SignUp from "./pages/public/SignUp";
@@ -17,6 +17,7 @@ import Profile from "./pages/user/shared/Profile";
 import Comments from "./pages/user/shared/Comments";
 import ReportProblem from "./pages/user/shared/ReportProblem";
 import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdvertisementManagement from "./pages/admin/AdvertisementManagement";
 
 function ProtectedRoute({ children }) {
   const currentUser = localStorage.getItem("currentUser");
@@ -61,6 +62,8 @@ function AdminRoute({ children }) {
 }
 
 function App() {
+    const [advertisements, setAdvertisements] = useState([]);
+    const [activeAdvertisement, setActiveAdvertisement] = useState(null);
   return (
     <BrowserRouter>
       <Routes>
@@ -74,7 +77,7 @@ function App() {
           path="/dashboard"
           element={
             <ProtectedRoute>
-              <Dashboard />
+              <Dashboard activeAdvertisement={activeAdvertisement} />
             </ProtectedRoute>
           }
         />
@@ -137,6 +140,19 @@ function App() {
        <Route
          path="/admin-dashboard"
          element={<AdminRoute><AdminDashboard /></AdminRoute>}
+       />
+
+       <Route
+         path="/admin/advertisements"
+         element={
+           <AdminRoute>
+             <AdvertisementManagement
+               advertisements={advertisements}
+               setAdvertisements={setAdvertisements}
+               setActiveAdvertisement={setActiveAdvertisement}
+             />
+           </AdminRoute>
+         }
        />
 
         <Route path="*" element={<NotFound />} />
